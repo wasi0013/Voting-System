@@ -1,7 +1,11 @@
-Digital-Voting-System
-=====================
+Voting System of Bangladesh
+============================
 
-A simple voting system application based on Electoral system of Bangladesh
+A simple voting system application in Bangla based on Electoral system of Bangladesh.
+
+Software requirement:
+----------------------------
+  *Dot net framework 4 or above
 
 Successfully implemented:
 -------------------------
