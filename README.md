@@ -19,16 +19,13 @@ Successfully implemented:
   * Upozilla Vote
   * Ctg Hill Area vote
   * Pourashava Vote
-   
-   
+  * Team registration and management for National Election
+  * Seats Planning 
 
 Under Development:
 ------------------
 
-  * National Election
-  * Team registration
-  * seats planning
-  * Voting process
+  * National Election Voting process
   * History (Impemented some animation with text box and string on Home) 
 
 Still to come:
@@ -42,15 +39,15 @@ Some Overview on Cyclomatic Complexity:
 ---------------------------------------
 |Forms And User Control	|Cyclomatic Complexity	|Depth of Inheritance	|Class Coupling	|Lines of Code|
 |-----------------------|----------------------|---------------------|---------------|-------------|
-|OVS	|293	|7	|101	|3270|
+|OVS	|326	|7	|101	|3592|
 |Program	|1|	1|	3|	3|
-|Main	|1	|0	|3	|3|
+|Main	|5	|7	|14	|20|
 |National Election|	5	|7	|14	|20|
-|National Election Vote|	11	|7	|21	|121|
-|Election|	30	|7	|38|	286|
+|National Election Vote|	29	|7	|43	|251|
+|Election|	36	|7	|38|	328|
 |Stats	|26	|7	|42|	237|
-|Home	|30	|7	|47	|377|
-|Quick Vote	|59	|7	|51	|582|
-|Signup	|27	|7	|39	|370|
+|Home	|30	|7	|47	|378|
+|Quick Vote	|67	|7	|51	|639|
+|Signup	|34	|7	|45	|443|
 |Standard Vote	|59	|7	|49 |	603|
-|User Information|	28	|7|	46|	485|
+|User Information|	38	|7|	50|	589|

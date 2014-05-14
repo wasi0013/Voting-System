@@ -92,11 +92,46 @@ namespace OVS
                 if (switche)
                 {
                     button1.Show();
+                    
                     comboBox1.Show();
+                    comboBox2.Show();
+                    
                     label2.Show();
+                    label3.Show();
+                    label4.Show();
+                    
                     textBox2.Show();
 
+                    comboBox1.Items.Clear();
+                    SqlDataAdapter dataadapter = new SqlDataAdapter("SELECT team.teamname, userinfo.uname FROM team INNER JOIN userinfo ON userinfo.voterid=team.voterid ", con);
+                    DataTable dt = new DataTable();
+                    dataadapter.Fill(dt);
+                    int i = -1, j = dt.Rows.Count;
+                    DataRow dr;
+                    while (++i < j)
+                    {
+                        dr = dt.Rows[i];
 
+                        comboBox1.Items.Add(dr.ItemArray[0].ToString()+"("+dr.ItemArray[1].ToString()+")");
+                    }
+
+                    comboBox2.Items.Clear();
+                    dataadapter = new SqlDataAdapter("SELECT seatname,seatid from seatvote", con);
+                    dt = new DataTable();
+                    dataadapter.Fill(dt);
+                    i = -1; j = dt.Rows.Count;
+
+                    while (++i < j)
+                    {
+                        dr = dt.Rows[i];
+
+                        comboBox2.Items.Add(dr.ItemArray[0].ToString() + "(" + dr.ItemArray[1].ToString() + ")");
+                    }
+
+
+
+
+                    
                 }
                 switche = !switche;
             }
@@ -156,9 +191,14 @@ namespace OVS
             textBox1.Hide();
             label1.Hide();
             label2.Hide();
+            label3.Hide();
+            label4.Hide();
+            
             textBox2.Hide();
             button1.Hide();
             comboBox1.Hide();
+            comboBox2.Hide();
+            
             dataGridView2.Hide();
         }
 
@@ -199,11 +239,11 @@ namespace OVS
                         insert.Parameters.AddWithValue("voterid", voterid);
                         insert.Parameters.AddWithValue("votecount", 0);
                         insert.ExecuteNonQuery();
-                        insert = new SqlCommand("Insert into teammember(teamname,voterid,votecount,seatid) values(@teamname,@voterid,@votecount,1);", con);
+                        insert = new SqlCommand("Insert into teammember(teamname,voterid,seatid) values(@teamname,@voterid,@seatid);", con);
                         insert.Parameters.AddWithValue("teamname", textBox1.Text.Trim());
 
                         insert.Parameters.AddWithValue("voterid", voterid);
-                        insert.Parameters.AddWithValue("votecount", 0);
+                        insert.Parameters.AddWithValue("seatid", 1);
                         insert.ExecuteNonQuery();
                         MessageBox.Show("Thanks for registering");
                     }
