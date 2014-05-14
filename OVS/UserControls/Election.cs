@@ -62,14 +62,37 @@ namespace OVS
         private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             hideall();
-            if (key)
+            if (voterid == "13")
             {
+                if (key)
+                {
+                    comboBox3.Show();
+                    comboBox3.Items.Clear();
+                    string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
+                    SqlConnection con = new SqlConnection(connstr);
+                    con.Open();
+                    SqlDataAdapter dataadapter = new SqlDataAdapter("SELECT votearea from Standardvote where votename='upojelavote'", con);
+                    DataTable dt = new DataTable();
+                    dataadapter.Fill(dt);
+                    int i = -1, j = dt.Rows.Count;
+                    DataRow dr;
+                    while (++i < j)
+                    {
+                        dr = dt.Rows[i];
+
+                        comboBox3.Items.Add(dr.ItemArray[0].ToString());
+                    }
+                }
+            }
+            else
+            {
+
                 comboBox3.Show();
                 comboBox3.Items.Clear();
                 string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
                 SqlConnection con = new SqlConnection(connstr);
                 con.Open();
-                SqlDataAdapter dataadapter = new SqlDataAdapter("SELECT votearea from Standardvote where votename='upojelavote'", con);
+                SqlDataAdapter dataadapter = new SqlDataAdapter("SELECT upojela from userinfo where voterid='" + voterid + "'", con);
                 DataTable dt = new DataTable();
                 dataadapter.Fill(dt);
                 int i = -1, j = dt.Rows.Count;
@@ -80,6 +103,8 @@ namespace OVS
 
                     comboBox3.Items.Add(dr.ItemArray[0].ToString());
                 }
+
+
             } key = !key;
         }
 
@@ -119,14 +144,37 @@ namespace OVS
         private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             hideall();
-            if (key)
+            if (voterid == "13")
             {
+                if (key)
+                {
+                    comboBox1.Show();
+                    comboBox1.Items.Clear();
+                    string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
+                    SqlConnection con = new SqlConnection(connstr);
+                    con.Open();
+                    SqlDataAdapter dataadapter = new SqlDataAdapter("SELECT votearea from Standardvote where votename='citycorporationvote'", con);
+                    DataTable dt = new DataTable();
+                    dataadapter.Fill(dt);
+                    int i = -1, j = dt.Rows.Count;
+                    DataRow dr;
+                    while (++i < j)
+                    {
+                        dr = dt.Rows[i];
+
+                        comboBox1.Items.Add(dr.ItemArray[0].ToString());
+                    }
+                }
+            }
+            else
+            {
+
                 comboBox1.Show();
                 comboBox1.Items.Clear();
                 string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
                 SqlConnection con = new SqlConnection(connstr);
                 con.Open();
-                SqlDataAdapter dataadapter = new SqlDataAdapter("SELECT votearea from Standardvote where votename='citycorporationvote'", con);
+                SqlDataAdapter dataadapter = new SqlDataAdapter("SELECT citycorporation from userinfo where voterid='" + voterid + "'", con);
                 DataTable dt = new DataTable();
                 dataadapter.Fill(dt);
                 int i = -1, j = dt.Rows.Count;
@@ -137,6 +185,8 @@ namespace OVS
 
                     comboBox1.Items.Add(dr.ItemArray[0].ToString());
                 }
+
+
             } key = !key;
         }
 
@@ -154,24 +204,48 @@ namespace OVS
         private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             hideall();
-            if (key)
-            {
-                comboBox2.Show();
-                comboBox2.Items.Clear();
-                string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
-                SqlConnection con = new SqlConnection(connstr);
-                con.Open();
-                SqlDataAdapter dataadapter = new SqlDataAdapter("SELECT votearea from Standardvote where votename='pourashavavote'", con);
-                DataTable dt = new DataTable();
-                dataadapter.Fill(dt);
-                int i = -1, j = dt.Rows.Count;
-                DataRow dr;
-                while (++i < j)
+            if(voterid=="13"){
+                if (key)
                 {
-                    dr = dt.Rows[i];
+                    comboBox2.Show();
+                    comboBox2.Items.Clear();
+                    string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
+                    SqlConnection con = new SqlConnection(connstr);
+                    con.Open();
+                    SqlDataAdapter dataadapter = new SqlDataAdapter("SELECT votearea from Standardvote where votename='pourashavavote'", con);
+                    DataTable dt = new DataTable();
+                    dataadapter.Fill(dt);
+                    int i = -1, j = dt.Rows.Count;
+                    DataRow dr;
+                    while (++i < j)
+                    {
+                        dr = dt.Rows[i];
 
-                    comboBox2.Items.Add(dr.ItemArray[0].ToString());
+                        comboBox2.Items.Add(dr.ItemArray[0].ToString());
+                    }
+
                 }
+            }
+                else {
+
+                    comboBox2.Show();
+                    comboBox2.Items.Clear();
+                    string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
+                    SqlConnection con = new SqlConnection(connstr);
+                    con.Open();
+                    SqlDataAdapter dataadapter = new SqlDataAdapter("SELECT pourashava from userinfo where voterid='"+voterid+"'", con);
+                    DataTable dt = new DataTable();
+                    dataadapter.Fill(dt);
+                    int i = -1, j = dt.Rows.Count;
+                    DataRow dr;
+                    while (++i < j)
+                    {
+                        dr = dt.Rows[i];
+
+                        comboBox2.Items.Add(dr.ItemArray[0].ToString());
+                    }
+                
+                
             } key = !key;
         }
 

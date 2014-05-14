@@ -140,6 +140,96 @@ namespace OVS
 
 
         }
+
+        public QuickVote(Form form, Boolean log, string vid, string pass, string voten,Boolean National)
+        {
+            InitializeComponent();
+            activeform = form;
+            activeform.Controls.Clear();
+            activeform.Controls.Add(this);
+            activeform.Height = this.Height;
+            activeform.Width = this.Width;
+            votename = voten;
+            activeform.Text = votename;
+            loggedin = log;
+            voterid = vid;
+            password = pass;
+            //set date time picker in custom format for that will be used to start vote
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = "MM/dd/yyyy hh:mm:ss";
+
+            if (voterid == "13")
+            {
+                linkLabel1.Text = "রেজিস্টার্ড প্রার্থী";
+                linkLabel3.Text = "ভোট শুরু করুন";
+                resetbutton.Show();
+
+            }
+
+            //First check whether vote already finished or not
+
+            con.Open();
+            SqlDataAdapter mda = new SqlDataAdapter("select startdate,enddate from admin where votename=@votename;", con);
+            mda.SelectCommand.Parameters.Add(new SqlParameter("votename", votename));
+            DataTable dt = new DataTable();
+            mda.Fill(dt);
+            con.Close();
+            DataRow dr = dt.Rows[0];
+            try
+            {
+                ets = dr.ItemArray[1].ToString();
+
+                starttimes = DateTime.Parse(dr.ItemArray[0].ToString());
+                endtimes = DateTime.Parse(dr.ItemArray[1].ToString());
+
+
+            }
+            catch
+            {
+                //vote is not scheduled yet so no running vote
+                time = false;
+
+            }
+            if (starttimes < DateTime.Now && starttimes < endtimes && endtimes > DateTime.Now)
+            {
+                //check whether vote is running or finished
+                time = true;
+                timer1.Start();
+                TimeSpan span = (endtimes - DateTime.Now);
+                hours = span.Hours;
+                mins = span.Minutes;
+                secs = span.Seconds;
+
+
+            }
+            else if (endtimes < DateTime.Now)
+            {
+                //vote already finished update database
+                con.Open();
+                try
+                {
+                    //try updating admin page if fails then there is multiple winners!
+                    SqlCommand insert = new SqlCommand("Update admin set voterid=(select voterid from " + votename + " where votecount=(select max(votecount) from " + votename + ")) where votename=@votename;", con);
+                    insert.Parameters.AddWithValue("votename", votename);
+                    insert.ExecuteNonQuery();
+
+                }
+                catch
+                {
+                    //multiple winners! set admin id as winner 
+                    con.Open();
+                    SqlCommand insert = new SqlCommand("Update admin set voterid=13 where votename=@votename;", con);
+                    insert.Parameters.AddWithValue("votename", votename);
+                    insert.ExecuteNonQuery();
+
+                }
+                con.Close();
+
+
+
+            }
+        }
+
         private void Quick_Vote_label_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 

@@ -13,19 +13,28 @@ namespace OVS
     public partial class Stats : UserControl
     {
         Form activeform;
+        //combobox viewer for standard votes
         Boolean loggedin = false,combovote;
+        
         string voterid, password,votename,votearea;
-        Boolean clicked = true;
-        static string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
 
+        //click toggler check wheather link label is clicked or not
+        Boolean clicked = true;
+
+        //static sql connections
+        static string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
         static  SqlConnection con = new SqlConnection(connstr);
 
         public Stats()
         {
+            //default constructor
+
             InitializeComponent();
         }
         public Stats(Form form,Boolean log,string vid,string pass)
         {
+           //overloaded constructor
+
             InitializeComponent();
             activeform = form;
             activeform.Controls.Clear();
@@ -33,6 +42,7 @@ namespace OVS
             activeform.Height = this.Height;
             activeform.Width = this.Width;
             activeform.Text = "Stats";
+            //get data
             loggedin = log;
             voterid = vid;
             password = pass;

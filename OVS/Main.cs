@@ -11,9 +11,12 @@ namespace OVS
 {
     public partial class Main : Form
     {
+        //This is the only form for this project
+
         public Main()
         {
             InitializeComponent();
+            //transfering this form to the home usercontrol
             Home h = new Home(this);
             
         }

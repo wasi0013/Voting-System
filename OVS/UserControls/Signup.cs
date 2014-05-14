@@ -21,7 +21,9 @@ namespace OVS
         string voterid, password;
         Boolean alright = true;
         DateTime dob=DateTime.Now;
-            
+        static string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
+        static SqlConnection con = new SqlConnection(connstr);
+                
         public Signup()
         {
             InitializeComponent();
@@ -41,6 +43,56 @@ namespace OVS
             voterid = vid;
             password = pass;
             agebox.ReadOnly = true;
+
+            comboBox1.Items.Clear();
+            con.Open();
+            SqlDataAdapter dataadapter = new SqlDataAdapter("SELECT votearea FROM standardvote where votename ='pourashavavote';", con);
+            DataTable dt = new DataTable();
+            dataadapter.Fill(dt);
+            con.Close();
+            int i = dt.Rows.Count;
+            DataRow dr = dt.Rows[0];
+            comboBox1.Items.Add(dr.ItemArray[0].ToString());
+            while (i-- > 1)
+            {
+                dr = dt.Rows[i];
+
+                comboBox1.Items.Add(dr.ItemArray[0].ToString());
+            }
+
+            dataadapter = new SqlDataAdapter("SELECT votearea FROM standardvote where votename ='upojelavote';", con);
+            dt = new DataTable();
+            dataadapter.Fill(dt);
+            i = dt.Rows.Count;
+            dr = dt.Rows[0];
+            comboBox2.Items.Add(dr.ItemArray[0].ToString());
+            while (i-- > 1)
+            {
+                dr = dt.Rows[i];
+
+                comboBox2.Items.Add(dr.ItemArray[0].ToString());
+            }
+
+
+            dataadapter = new SqlDataAdapter("SELECT votearea FROM standardvote where votename ='citycorporationvote';", con);
+            dt = new DataTable();
+            dataadapter.Fill(dt);
+            i = dt.Rows.Count;
+            dr = dt.Rows[0];
+            comboBox3.Items.Add(dr.ItemArray[0].ToString());
+            while (i-- > 1)
+            {
+                dr = dt.Rows[i];
+
+                comboBox3.Items.Add(dr.ItemArray[0].ToString());
+            }
+
+
+
+            con.Close();
+
+
+
         }
 
         private void cancel_button_Click(object sender, EventArgs e)
@@ -77,8 +129,6 @@ namespace OVS
             voterid = vidbox.Text.Trim();
             password = passbox.Text.Trim();
 
-            string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
-            SqlConnection con = new SqlConnection(connstr);
             con.Open();
             DataTable dt = new DataTable();
             SqlDataAdapter mda = new SqlDataAdapter("select * from userinfo where (voterid=@voterid)", con);
@@ -96,6 +146,10 @@ namespace OVS
                 MessageBox.Show("You are already registered. Please Login or choose a different voterid");
 
                 
+            }
+            if (comboBox1.Text.Trim() == "" || comboBox2.Text.Trim() == "" || comboBox3.Text.Trim() == "") {
+                MessageBox.Show("please select upojela citycorporation and pourashava");
+                alright = false;
             }
 
 
@@ -149,15 +203,18 @@ namespace OVS
 
                 //update userinfo according to the change
 
-                SqlCommand insert = new SqlCommand("Insert into userinfo(uname,password,voterid,fname,mname,email,contact,dob,bloodgroup,address,doreg)values(@uname,@password,@voterid,@fname,@mname,@email,@contact,@dob,@bloodgroup,@address,@doreg);", con);
+                SqlCommand insert = new SqlCommand("Insert into userinfo(uname,password,voterid,fname,mname,email,contact,dob,bloodgroup,address,doreg,upojela,pourashava,citycorporation)values(@uname,@password,@voterid,@fname,@mname,@email,@contact,@dob,@bloodgroup,@address,@doreg,@upojela,@pourashava,@citycorporation);", con);
 
                 insert.Parameters.AddWithValue("uname", namebox.Text.Trim());
                 insert.Parameters.AddWithValue("password", password);
                 insert.Parameters.AddWithValue("voterid", vidbox.Text.Trim());
                 insert.Parameters.AddWithValue("fname", fnamebox.Text.Trim());
                 insert.Parameters.AddWithValue("mname", mnamebox.Text.Trim());
-
+                insert.Parameters.AddWithValue("upojela",comboBox1.Text.Trim());
+                insert.Parameters.AddWithValue("pourashava", comboBox2.Text.Trim());
+                insert.Parameters.AddWithValue("citycorporation", comboBox3.Text.Trim());
                 insert.Parameters.AddWithValue("email", ms);
+
                 insert.Parameters.AddWithValue("contact", phonebox.Text.Trim());
                 insert.Parameters.AddWithValue("dob", dob.ToShortDateString());
                 insert.Parameters.AddWithValue("bloodgroup", bloodbox.Text.Trim());
@@ -229,7 +286,6 @@ namespace OVS
             try
             {
                 agebox.Text = GetAge(dob).ToString();
-                MessageBox.Show(dob.ToLongDateString());
             }
             catch
             {

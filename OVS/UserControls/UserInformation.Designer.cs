@@ -62,6 +62,10 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,7 +75,7 @@
             this.vidbox.Location = new System.Drawing.Point(356, 135);
             this.vidbox.Margin = new System.Windows.Forms.Padding(6);
             this.vidbox.Name = "vidbox";
-            this.vidbox.Size = new System.Drawing.Size(420, 29);
+            this.vidbox.Size = new System.Drawing.Size(636, 29);
             this.vidbox.TabIndex = 0;
             // 
             // namebox
@@ -80,7 +84,7 @@
             this.namebox.Location = new System.Drawing.Point(356, 260);
             this.namebox.Margin = new System.Windows.Forms.Padding(6);
             this.namebox.Name = "namebox";
-            this.namebox.Size = new System.Drawing.Size(420, 29);
+            this.namebox.Size = new System.Drawing.Size(636, 29);
             this.namebox.TabIndex = 1;
             // 
             // fnamebox
@@ -89,7 +93,7 @@
             this.fnamebox.Location = new System.Drawing.Point(356, 296);
             this.fnamebox.Margin = new System.Windows.Forms.Padding(6);
             this.fnamebox.Name = "fnamebox";
-            this.fnamebox.Size = new System.Drawing.Size(420, 29);
+            this.fnamebox.Size = new System.Drawing.Size(636, 29);
             this.fnamebox.TabIndex = 2;
             // 
             // mnamebox
@@ -98,7 +102,7 @@
             this.mnamebox.Location = new System.Drawing.Point(356, 338);
             this.mnamebox.Margin = new System.Windows.Forms.Padding(6);
             this.mnamebox.Name = "mnamebox";
-            this.mnamebox.Size = new System.Drawing.Size(420, 29);
+            this.mnamebox.Size = new System.Drawing.Size(636, 29);
             this.mnamebox.TabIndex = 3;
             // 
             // addressbox
@@ -108,7 +112,7 @@
             this.addressbox.Margin = new System.Windows.Forms.Padding(6);
             this.addressbox.Multiline = true;
             this.addressbox.Name = "addressbox";
-            this.addressbox.Size = new System.Drawing.Size(420, 60);
+            this.addressbox.Size = new System.Drawing.Size(636, 27);
             this.addressbox.TabIndex = 4;
             // 
             // label1
@@ -187,7 +191,7 @@
             this.agebox.Location = new System.Drawing.Point(356, 486);
             this.agebox.Margin = new System.Windows.Forms.Padding(6);
             this.agebox.Name = "agebox";
-            this.agebox.Size = new System.Drawing.Size(420, 29);
+            this.agebox.Size = new System.Drawing.Size(636, 29);
             this.agebox.TabIndex = 12;
             // 
             // mailbox
@@ -196,7 +200,7 @@
             this.mailbox.Location = new System.Drawing.Point(356, 606);
             this.mailbox.Margin = new System.Windows.Forms.Padding(6);
             this.mailbox.Name = "mailbox";
-            this.mailbox.Size = new System.Drawing.Size(420, 29);
+            this.mailbox.Size = new System.Drawing.Size(636, 29);
             this.mailbox.TabIndex = 13;
             // 
             // phonebox
@@ -205,7 +209,7 @@
             this.phonebox.Location = new System.Drawing.Point(356, 565);
             this.phonebox.Margin = new System.Windows.Forms.Padding(6);
             this.phonebox.Name = "phonebox";
-            this.phonebox.Size = new System.Drawing.Size(420, 29);
+            this.phonebox.Size = new System.Drawing.Size(636, 29);
             this.phonebox.TabIndex = 14;
             // 
             // bloodbox
@@ -214,7 +218,7 @@
             this.bloodbox.Location = new System.Drawing.Point(356, 524);
             this.bloodbox.Margin = new System.Windows.Forms.Padding(6);
             this.bloodbox.Name = "bloodbox";
-            this.bloodbox.Size = new System.Drawing.Size(420, 29);
+            this.bloodbox.Size = new System.Drawing.Size(636, 29);
             this.bloodbox.TabIndex = 15;
             // 
             // blood_group_level
@@ -264,7 +268,7 @@
             // back_button
             // 
             this.back_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.back_button.Location = new System.Drawing.Point(626, 648);
+            this.back_button.Location = new System.Drawing.Point(881, 649);
             this.back_button.Margin = new System.Windows.Forms.Padding(6);
             this.back_button.Name = "back_button";
             this.back_button.Size = new System.Drawing.Size(150, 44);
@@ -299,7 +303,7 @@
             // save_button
             // 
             this.save_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.save_button.Location = new System.Drawing.Point(464, 649);
+            this.save_button.Location = new System.Drawing.Point(697, 649);
             this.save_button.Margin = new System.Windows.Forms.Padding(6);
             this.save_button.Name = "save_button";
             this.save_button.Size = new System.Drawing.Size(150, 44);
@@ -311,7 +315,7 @@
             // reload_button
             // 
             this.reload_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.reload_button.Location = new System.Drawing.Point(302, 649);
+            this.reload_button.Location = new System.Drawing.Point(535, 649);
             this.reload_button.Margin = new System.Windows.Forms.Padding(6);
             this.reload_button.Name = "reload_button";
             this.reload_button.Size = new System.Drawing.Size(150, 44);
@@ -323,7 +327,7 @@
             // edit_button
             // 
             this.edit_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.edit_button.Location = new System.Drawing.Point(140, 649);
+            this.edit_button.Location = new System.Drawing.Point(356, 649);
             this.edit_button.Margin = new System.Windows.Forms.Padding(6);
             this.edit_button.Name = "edit_button";
             this.edit_button.Size = new System.Drawing.Size(150, 44);
@@ -339,7 +343,7 @@
             this.passbox.Margin = new System.Windows.Forms.Padding(6);
             this.passbox.Name = "passbox";
             this.passbox.PasswordChar = '*';
-            this.passbox.Size = new System.Drawing.Size(420, 29);
+            this.passbox.Size = new System.Drawing.Size(636, 29);
             this.passbox.TabIndex = 26;
             this.passbox.UseSystemPasswordChar = true;
             this.passbox.TextChanged += new System.EventHandler(this.passbox_TextChanged);
@@ -350,7 +354,7 @@
             this.repassbox.Location = new System.Drawing.Point(356, 228);
             this.repassbox.Margin = new System.Windows.Forms.Padding(6);
             this.repassbox.Name = "repassbox";
-            this.repassbox.Size = new System.Drawing.Size(420, 29);
+            this.repassbox.Size = new System.Drawing.Size(636, 29);
             this.repassbox.TabIndex = 27;
             this.repassbox.UseSystemPasswordChar = true;
             this.repassbox.TextChanged += new System.EventHandler(this.repassbox_TextChanged);
@@ -399,15 +403,60 @@
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(356, 449);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(420, 31);
+            this.dateTimePicker1.Size = new System.Drawing.Size(636, 31);
             this.dateTimePicker1.TabIndex = 50;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(356, 415);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(247, 28);
+            this.comboBox1.TabIndex = 51;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(609, 415);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(208, 28);
+            this.comboBox2.TabIndex = 52;
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(823, 415);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(169, 28);
+            this.comboBox3.TabIndex = 53;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.label10.Location = new System.Drawing.Point(129, 419);
+            this.label10.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(218, 18);
+            this.label10.TabIndex = 54;
+            this.label10.Text = "পৌরসভা/ উপজেলা / সিটি কর্পোরেশান";
             // 
             // UserInformation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label9);
@@ -487,5 +536,9 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.Label label10;
     }
 }

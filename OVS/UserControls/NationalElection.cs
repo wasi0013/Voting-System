@@ -195,6 +195,12 @@ namespace OVS
                     {
                         SqlCommand insert = new SqlCommand("Insert into team(teamname,voterid,votecount) values(@teamname,@voterid,@votecount);", con);
                         insert.Parameters.AddWithValue("teamname", textBox1.Text.Trim());
+                        
+                        insert.Parameters.AddWithValue("voterid", voterid);
+                        insert.Parameters.AddWithValue("votecount", 0);
+                        insert.ExecuteNonQuery();
+                        insert = new SqlCommand("Insert into teammember(teamname,voterid,votecount,seatid) values(@teamname,@voterid,@votecount,1);", con);
+                        insert.Parameters.AddWithValue("teamname", textBox1.Text.Trim());
 
                         insert.Parameters.AddWithValue("voterid", voterid);
                         insert.Parameters.AddWithValue("votecount", 0);
