@@ -17,7 +17,10 @@ namespace OVS
         {
             InitializeComponent();
         }
-        
+        static string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
+
+        static SqlConnection con = new SqlConnection(connstr);
+
         Form activeform;
         Boolean loggedin = false;
         string voterid, password;
@@ -53,17 +56,57 @@ namespace OVS
             vidbox.Text = vid;
             passbox.Text = pass;
 
-            string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
-
-            SqlConnection con = new SqlConnection(connstr);
+            con.Open();
+            SqlDataAdapter dataadapter = new SqlDataAdapter("SELECT pourashava from userinfo where voterid='" + voterid + "'", con);
             DataTable dt = new DataTable();
+            dataadapter.Fill(dt);
+            int i = -1, j = dt.Rows.Count;
+            DataRow dr;
+            while (++i < j)
+            {
+                dr = dt.Rows[i];
+
+                comboBox1.Items.Add(dr.ItemArray[0].ToString());
+            }
+
+            dataadapter = new SqlDataAdapter("SELECT citycorporation from userinfo where voterid='" + voterid + "'", con);
+            dt = new DataTable();
+            dataadapter.Fill(dt);
+            i = -1;
+            j = dt.Rows.Count;
+            
+            while (++i < j)
+            {
+                dr = dt.Rows[i];
+
+                comboBox3.Items.Add(dr.ItemArray[0].ToString());
+            }
+
+
+            dataadapter = new SqlDataAdapter("SELECT upojela from userinfo where voterid='" + voterid + "'", con);
+            dt = new DataTable();
+            dataadapter.Fill(dt);
+            i = -1; j = dt.Rows.Count;
+            
+            while (++i < j)
+            {
+                dr = dt.Rows[i];
+
+                comboBox2.Items.Add(dr.ItemArray[0].ToString());
+            }
+
+
+
+
+            
+            dt = new DataTable();
 
             //collect all the user information from the database table userinfo
             SqlDataAdapter mda = new SqlDataAdapter("select * from userinfo where (voterid=@voterid) AND (password=@password)", con);
             mda.SelectCommand.Parameters.Add(new SqlParameter("voterid", voterid));
             mda.SelectCommand.Parameters.Add(new SqlParameter("password", password));
             mda.Fill(dt);
-            DataRow dr = dt.Rows[0];
+            dr = dt.Rows[0];
             dob =DateTime.Parse(dr.ItemArray[7].ToString()); 
             namebox.Text= dr.ItemArray[0].ToString();
             fnamebox.Text = dr.ItemArray[3].ToString();
@@ -73,6 +116,10 @@ namespace OVS
             dateTimePicker1.Value = dob;
             bloodbox.Text = dr.ItemArray[9].ToString();
             addressbox.Text = dr.ItemArray[10].ToString();
+            comboBox1.Text = dr.ItemArray[11].ToString();
+            comboBox2.Text = dr.ItemArray[12].ToString();
+            comboBox3.Text = dr.ItemArray[13].ToString();
+            comboBox1.Enabled = comboBox2.Enabled = comboBox3.Enabled = false;
             agebox.Text= GetAge(dob).ToString();
             vidbox.ReadOnly = true;
             agebox.ReadOnly = true;
@@ -84,6 +131,7 @@ namespace OVS
             phonebox.ReadOnly = true;
             bloodbox.ReadOnly = true;
             addressbox.ReadOnly = true;
+            con.Close();
            
          }
         private void User_info_label_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -120,6 +168,54 @@ namespace OVS
             phonebox.ReadOnly = false;
             bloodbox.ReadOnly = false;
             addressbox.ReadOnly = false;
+            comboBox1.Enabled = comboBox2.Enabled = comboBox3.Enabled = true;
+
+            comboBox3.Show();
+            comboBox3.Items.Clear();
+            string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
+            SqlConnection con = new SqlConnection(connstr);
+            con.Open();
+            SqlDataAdapter dataadapter = new SqlDataAdapter("SELECT votearea from Standardvote where votename='citycorporationvote'", con);
+            DataTable dt = new DataTable();
+            dataadapter.Fill(dt);
+            int i = -1, j = dt.Rows.Count;
+            DataRow dr;
+            while (++i < j)
+            {
+                dr = dt.Rows[i];
+
+                comboBox3.Items.Add(dr.ItemArray[0].ToString());
+            }
+
+            comboBox2.Show();
+            comboBox2.Items.Clear();
+            dataadapter = new SqlDataAdapter("SELECT votearea from Standardvote where votename='upojelavote'", con);
+            dt = new DataTable();
+            dataadapter.Fill(dt);
+            i = -1; j = dt.Rows.Count;
+            
+            while (++i < j)
+            {
+                dr = dt.Rows[i];
+
+                comboBox2.Items.Add(dr.ItemArray[0].ToString());
+            }
+            comboBox1.Show();
+            comboBox1.Items.Clear();
+            dataadapter = new SqlDataAdapter("SELECT votearea from Standardvote where votename='pourashavavote'", con);
+            dt = new DataTable();
+            dataadapter.Fill(dt);
+            i = -1; j = dt.Rows.Count;
+
+            while (++i < j)
+            {
+                dr = dt.Rows[i];
+
+                comboBox1.Items.Add(dr.ItemArray[0].ToString());
+            }
+
+
+
 
         }
 
@@ -160,6 +256,9 @@ namespace OVS
             dob = DateTime.Parse(dr.ItemArray[7].ToString());
             bloodbox.Text = dr.ItemArray[9].ToString();
             addressbox.Text = dr.ItemArray[10].ToString();
+            comboBox1.Text  = dr.ItemArray[11].ToString();
+            comboBox2.Text = dr.ItemArray[12].ToString();
+            comboBox3.Text = dr.ItemArray[13].ToString();
         }
 
         private void save_button_Click(object sender, EventArgs e)
@@ -176,7 +275,11 @@ namespace OVS
                 MessageBox.Show("Invalid Password");
                 alright = false;
             }
-            
+            if (comboBox1.Text.Trim() == "" || comboBox2.Text.Trim() == "" || comboBox3.Text.Trim() == "")
+            {
+                MessageBox.Show("please select upojela citycorporation and pourashava");
+                alright = false;
+            }
 
             mailbox.BackColor = System.Drawing.Color.White;
             string ms = mailbox.Text.Trim();
@@ -219,32 +322,34 @@ namespace OVS
             if (alright)
             {
 
-                //only gets executed when everything is allright
+                //only gets executed when everything is alright
 
                 //This connection string should be changed if necessary
-                
-                //update tbl_userinfo according to the change
-                SqlCommand insert = new SqlCommand("Update userinfo set uname = @uname,password=@password,fname = @fname,mname = @mname,email = @email,contact = @contact,dob= @dob, bloodgroup= @bloodgroup,address= @address where voterid=@voterid", con);
-                voterid = vidbox.Text.Trim();
-                password = passbox.Text.Trim();
+
+                //update userinfo according to the change
+
+                SqlCommand insert = new SqlCommand("Insert into userinfo(uname,password,voterid,fname,mname,email,contact,dob,bloodgroup,address,doreg,upojela,pourashava,citycorporation)values(@uname,@password,@voterid,@fname,@mname,@email,@contact,@dob,@bloodgroup,@address,@doreg,@upojela,@pourashava,@citycorporation);", con);
+
                 insert.Parameters.AddWithValue("uname", namebox.Text.Trim());
                 insert.Parameters.AddWithValue("password", password);
-                insert.Parameters.AddWithValue("voterid", voterid);
+                insert.Parameters.AddWithValue("voterid", vidbox.Text.Trim());
                 insert.Parameters.AddWithValue("fname", fnamebox.Text.Trim());
                 insert.Parameters.AddWithValue("mname", mnamebox.Text.Trim());
-                
+                insert.Parameters.AddWithValue("upojela", comboBox1.Text.Trim());
+                insert.Parameters.AddWithValue("pourashava", comboBox2.Text.Trim());
+                insert.Parameters.AddWithValue("citycorporation", comboBox3.Text.Trim());
                 insert.Parameters.AddWithValue("email", ms);
+
                 insert.Parameters.AddWithValue("contact", phonebox.Text.Trim());
                 insert.Parameters.AddWithValue("dob", dob.ToShortDateString());
                 insert.Parameters.AddWithValue("bloodgroup", bloodbox.Text.Trim());
                 insert.Parameters.AddWithValue("address", addressbox.Text.Trim());
+                insert.Parameters.AddWithValue("doreg", DateTime.Now.ToShortDateString());
 
-               
+
 
                 // Execute query 
                 insert.ExecuteNonQuery();
-
-
                 
                 //Fix warning color
                 mailbox.BackColor = agebox.BackColor = mailbox.BackColor = System.Drawing.Color.White;

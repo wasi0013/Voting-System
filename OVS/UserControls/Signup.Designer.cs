@@ -247,7 +247,7 @@
             this.ok_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ok_button.Location = new System.Drawing.Point(395, 666);
             this.ok_button.Name = "ok_button";
-            this.ok_button.Size = new System.Drawing.Size(119, 41);
+            this.ok_button.Size = new System.Drawing.Size(247, 41);
             this.ok_button.TabIndex = 40;
             this.ok_button.Text = "ok";
             this.ok_button.UseVisualStyleBackColor = true;
@@ -256,9 +256,9 @@
             // cancel_button
             // 
             this.cancel_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancel_button.Location = new System.Drawing.Point(546, 666);
+            this.cancel_button.Location = new System.Drawing.Point(752, 666);
             this.cancel_button.Name = "cancel_button";
-            this.cancel_button.Size = new System.Drawing.Size(126, 41);
+            this.cancel_button.Size = new System.Drawing.Size(279, 41);
             this.cancel_button.TabIndex = 41;
             this.cancel_button.Text = "cancel";
             this.cancel_button.UseVisualStyleBackColor = true;

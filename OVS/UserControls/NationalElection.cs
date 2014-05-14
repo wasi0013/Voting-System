@@ -16,8 +16,8 @@ namespace OVS
         static SqlConnection con = new SqlConnection(connstr);
 
         Form activeform;
-        string voterid, password,ets;
-        DateTime starttime, endtimes;
+        string voterid, password;//,ets;
+        //DateTime starttime, endtimes;
         Boolean loggedin = false,switche=true;
 
         public NationalElection(Form form, Boolean log, string vid, string pass)
