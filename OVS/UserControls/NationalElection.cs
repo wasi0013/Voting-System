@@ -53,6 +53,26 @@ namespace OVS
 
         private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            hideall();
+            if (switche)
+            {
+                button2.Show();
+                comboBox1.Show();
+                comboBox1.Items.Clear();
+                comboBox1.Items.Clear();
+                SqlDataAdapter dataadapter = new SqlDataAdapter("SELECT seatname,seatid from seatvote", con);
+                DataTable dt = new DataTable();
+                dataadapter.Fill(dt);
+                int i = -1, j = dt.Rows.Count;
+                DataRow dr;
+                while (++i < j)
+                {
+                    dr = dt.Rows[i];
+
+                    comboBox1.Items.Add(dr.ItemArray[0].ToString() + "(" + dr.ItemArray[1].ToString() + ")");
+                }
+            }
+            switche = !switche;
 
         }
 
@@ -91,7 +111,7 @@ namespace OVS
 
                 if (switche)
                 {
-                    button1.Show();
+                    
                     
                     comboBox1.Show();
                     comboBox2.Show();
@@ -102,6 +122,7 @@ namespace OVS
                     
                     textBox2.Show();
 
+                    
                     comboBox1.Items.Clear();
                     SqlDataAdapter dataadapter = new SqlDataAdapter("SELECT team.teamname, userinfo.uname FROM team INNER JOIN userinfo ON userinfo.voterid=team.voterid ", con);
                     DataTable dt = new DataTable();
@@ -200,6 +221,8 @@ namespace OVS
             comboBox2.Hide();
             
             dataGridView2.Hide();
+
+            button2.Hide();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -270,7 +293,72 @@ namespace OVS
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (textBox2.Text.Trim() == password)
+            {
+                con.Open();
+                DataTable dk = new DataTable();
+                SqlDataAdapter mda = new SqlDataAdapter("select * from teammember where voterid=@voterid", con);
+                mda.SelectCommand.Parameters.Add(new SqlParameter("voterid", voterid));
+                mda.Fill(dk);
+                con.Close();
 
+                if (dk.Rows.Count > 0)
+                {
+
+                    MessageBox.Show("You are already member of a team!");
+
+                }
+                else
+                {
+                    con.Open();
+                    SqlCommand insert = new SqlCommand("Insert into teammember(teamname,voterid,seatid) values(@teamname,@voterid,@seatid);", con);
+                    insert.Parameters.AddWithValue("teamname", comboBox1.Text.Trim().Split('(')[0]);
+                    insert.Parameters.AddWithValue("voterid", voterid);
+                    insert.Parameters.AddWithValue("seatid", comboBox2.Text.Trim().Split('(')[1].Split(')')[0]);
+
+                    insert.ExecuteNonQuery();
+                    MessageBox.Show("Thanks for registering");
+
+                    NationalElection ns = new NationalElection(activeform, loggedin, voterid, password);
+
+
+                }
+                
+
+
+
+            }
+            else {
+
+
+                MessageBox.Show("Wrong Password!");
+            
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.Text != "" && comboBox2.Text != "") button1.Show();
+
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.Text != "" && comboBox2.Text != "") button1.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (comboBox1.Text.Trim() != "")
+            {
+
+
+            }
+            else {
+
+                MessageBox.Show("You didn't pick any seat");
+            
+            }
         }
     }
 }
