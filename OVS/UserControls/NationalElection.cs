@@ -351,7 +351,7 @@ namespace OVS
         {
             if (comboBox1.Text.Trim() != "")
             {
-
+                StandardVote s = new StandardVote(activeform, loggedin, voterid, password, comboBox1.Text.Trim());
 
             }
             else {

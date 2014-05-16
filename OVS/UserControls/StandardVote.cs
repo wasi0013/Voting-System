@@ -17,8 +17,8 @@ namespace OVS
         static SqlConnection con = new SqlConnection(connstr);
 
         Form activeform;
-        Boolean loggedin = false;
-        string voterid, password, votename,votearea,ets;
+        Boolean loggedin = false,nationalvote=false;
+        string voterid, password, votename,votearea,ets,seatname;
         Boolean switche = true;
 
         int hours = 0, mins = 0, secs = 0;
@@ -50,6 +50,9 @@ namespace OVS
         {
             InitializeComponent();
         }
+
+
+
 
         public StandardVote(Form form, Boolean log, string vid, string pass, string voten,string votea) {
             InitializeComponent();
@@ -127,6 +130,15 @@ namespace OVS
                     insert.Parameters.AddWithValue("votearea", votearea);
                     insert.ExecuteNonQuery();
                     con.Close();
+                    try
+                    {
+                        insert = new SqlCommand("insert into history(event,dates) values('" + endtimes + " " + votename + " is finished','" + endtimes + "')", con);
+                        insert.ExecuteNonQuery();
+                    }
+                    catch
+                    {
+
+                    }
 
                 }
                 catch
@@ -138,6 +150,15 @@ namespace OVS
                     insert.Parameters.AddWithValue("votearea", votearea);
                     insert.ExecuteNonQuery();
                     con.Close();
+                    try
+                    {
+                        insert = new SqlCommand("insert into history(event,dates) values('" + endtimes + " " + votename + " is finished','" + endtimes + "')", con);
+                        insert.ExecuteNonQuery();
+                    }
+                    catch
+                    {
+
+                    }
                 }
 
 
@@ -145,6 +166,101 @@ namespace OVS
             }
         
         }
+
+
+        public StandardVote(Form form, Boolean log, string vid, string pass, string seatn)
+        {
+            //overloaded just for the national vote
+
+            InitializeComponent();
+            activeform = form;
+            activeform.Controls.Clear();
+            activeform.Controls.Add(this);
+            activeform.Height = this.Height;
+            activeform.Width = this.Width;
+            seatname = seatn;
+            activeform.Text = seatname;
+            loggedin = log;
+            voterid = vid;
+            password = pass;
+            nationalvote = true;
+            //set date time picker in custom format for that will be used to start vote
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = "MM/dd/yyyy hh:mm:ss";
+
+
+            if (voterid == "13")
+            {
+                linkLabel1.Text = "রেজিস্টার্ড প্রার্থী";
+                linkLabel3.Text = "ভোট শুরু করুন";
+                resetbutton.Show();
+
+            }
+            //First check whether vote already finished or not
+
+            con.Open();
+            //works!
+            SqlDataAdapter mda = new SqlDataAdapter("select startdate,enddate from admin where votename=@seatvote;", con);
+            mda.SelectCommand.Parameters.Add(new SqlParameter("seatvote", "seatvote"));
+           
+            DataTable dt = new DataTable();
+            mda.Fill(dt);
+            con.Close();
+            DataRow dr = dt.Rows[0];
+            try
+            {
+                ets = dr.ItemArray[1].ToString();
+
+                starttimes = DateTime.Parse(dr.ItemArray[0].ToString());
+                endtimes = DateTime.Parse(dr.ItemArray[1].ToString());
+
+            }
+            catch
+            {
+                //vote is not scheduled yet so no running vote
+                time = false;
+
+            }
+            if (starttimes < DateTime.Now && starttimes < endtimes && endtimes > DateTime.Now)
+            {
+                //check whether vote is running or finished
+                time = true;
+                timer1.Start();
+                TimeSpan span = (endtimes - DateTime.Now);
+                hours = span.Hours;
+                mins = span.Minutes;
+                secs = span.Seconds;
+
+
+            }
+            else if (endtimes < DateTime.Now)
+            {
+                //vote already finished update database
+
+                try
+                {
+                    ///watch out NEED FIXING!
+                    //try updating admin page if fails then there is multiple winners!
+                    con.Open();
+                    SqlCommand insert = new SqlCommand("Update admin set voterid=(select voterid from team where votecount=(select max(votecount) from team)) where votename='seatvote'", con);
+                    insert.ExecuteNonQuery();
+                    con.Close();
+
+                }
+                catch
+                {
+                    //multiple winners! set admin id as winner
+                    con.Open();
+                    SqlCommand insert = new SqlCommand("Update admin set voterid=13 where votename='seatvote'", con);
+                    insert.Parameters.AddWithValue("votename", votename);
+                    insert.ExecuteNonQuery();
+                    con.Close();
+                    //goes from here
+                }
+            }
+
+        }
+
 
 
        

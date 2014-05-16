@@ -121,7 +121,15 @@ namespace OVS
                     SqlCommand insert = new SqlCommand("Update admin set voterid=(select voterid from "+votename+" where votecount=(select max(votecount) from "+votename+")) where votename=@votename;", con);
                     insert.Parameters.AddWithValue("votename", votename);
                     insert.ExecuteNonQuery();
+                    try
+                    {
+                        insert = new SqlCommand("insert into history(event,dates) values('" + endtimes + " " + votename + " is finished','" + endtimes + "')", con);
+                        insert.ExecuteNonQuery();
+                    }
+                    catch { 
                     
+                    }
+                        
                 }
                 catch
                 {
