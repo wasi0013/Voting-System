@@ -60,6 +60,6 @@ generated using microsoft visual studio 2010 ultimate
 
 Actual lines of code:
 ---------------------
-Using git bash : 24,178 lines [Command: wc -l $(git ls-files)]
-Written code: 3,794 lines
+Using git bash : 24,178 lines [Command: wc -l $(git ls-files)]  
+Written code: 3,794 lines  
 Automatically generated: rest
