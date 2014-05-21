@@ -328,7 +328,7 @@ namespace OVS
 
                 //update userinfo according to the change
 
-                SqlCommand insert = new SqlCommand("Insert into userinfo(uname,password,voterid,fname,mname,email,contact,dob,bloodgroup,address,doreg,upojela,pourashava,citycorporation)values(@uname,@password,@voterid,@fname,@mname,@email,@contact,@dob,@bloodgroup,@address,@doreg,@upojela,@pourashava,@citycorporation);", con);
+                SqlCommand insert = new SqlCommand("Update userinfo set uname=@uname,password=@password,fname=@fname,mname=@mname,email=@email,contact=@contact,dob=@dob,bloodgroup=@bloodgroup,address=@address,doreg=@doreg,upojela=@upojela,pourashava=@pourashava,citycorporation=@citycorporation where voterid=@voterid;", con);
 
                 insert.Parameters.AddWithValue("uname", namebox.Text.Trim());
                 insert.Parameters.AddWithValue("password", password);
@@ -357,6 +357,7 @@ namespace OVS
                 label9.Hide();
                 progressBar1.Hide();
                 repassbox.Hide();
+                MessageBox.Show("Data saved Successfully");
         
             
             }

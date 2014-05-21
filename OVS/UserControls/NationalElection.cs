@@ -89,7 +89,7 @@ namespace OVS
                 //completed successfully
 
                 con.Open();
-                SqlDataAdapter dataadapter = new SqlDataAdapter("SELECT  teammember.teamname as Team_Name, userinfo.uname as Team_Member, userinfo.voterid FROM teammember INNER JOIN userinfo ON userinfo.voterid = teammember.voterid", con);
+                SqlDataAdapter dataadapter = new SqlDataAdapter("SELECT  teammember.teamname as Team_Name, userinfo.uname as Team_Member, userinfo.voterid as Voter_id,teammember.seatid as Seat_Id FROM teammember INNER JOIN userinfo ON userinfo.voterid = teammember.voterid", con);
                 DataTable dt = new DataTable();
                 dataadapter.Fill(dt);
                 con.Close();

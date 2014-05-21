@@ -296,7 +296,18 @@ namespace OVS
 
         private void label2_Click(object sender, EventArgs e)
         {
+            
+            DialogResult dr = MessageBox.Show("আপনি কি নিশ্চিত? history থেকে সব তথ্য মুছে ফেলা হবে!", "সতর্কবার্তা!", MessageBoxButtons.YesNo,
+        MessageBoxIcon.Warning);
+            if (dr == DialogResult.Yes)
+            {
+                con.Open();
+                SqlCommand insert = new SqlCommand("TRUNCATE table history", con);
 
+                insert.ExecuteNonQuery();
+
+            }
+            
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

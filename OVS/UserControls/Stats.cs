@@ -121,7 +121,7 @@ namespace OVS
                     mda = new SqlDataAdapter("select * from " + votename, con);
                 }
                 else {
-                    mda = new SqlDataAdapter("select * from " + votename+" where votearea='"+votearea+"'", con);
+                    mda = new SqlDataAdapter("select voterid,votecount from " + votename+" where votearea='"+votearea+"'", con);
                 }
 
                 mda.Fill(dt);

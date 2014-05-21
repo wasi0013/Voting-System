@@ -122,14 +122,12 @@ namespace OVS
 
                 try
                 {
-                    ///watch out NEED FIXING!
-                    //try updating admin page if fails then there is multiple winners!
                     con.Open();
                     SqlCommand insert = new SqlCommand("Update standardvote set voterid=(select voterid from " + votename + " where votecount=(select max(votecount) from " + votename + " where votearea='"+votearea+"')) where (votename=@votename AND votearea=@votearea);", con);
                     insert.Parameters.AddWithValue("votename", votename);
                     insert.Parameters.AddWithValue("votearea", votearea);
                     insert.ExecuteNonQuery();
-                    con.Close();
+                    
                     try
                     {
                         insert = new SqlCommand("insert into history(event,dates) values('" + endtimes + " " + votename + " is finished','" + endtimes + "')", con);
@@ -139,17 +137,16 @@ namespace OVS
                     {
 
                     }
-
+                    con.Close();
                 }
                 catch
                 {
                     //multiple winners! set admin id as winner
-                    con.Open();
+                   
                     SqlCommand insert = new SqlCommand("Update standardvote set voterid=13 where (votename=@votename AND votearea= @votearea);", con);
                     insert.Parameters.AddWithValue("votename", votename);
                     insert.Parameters.AddWithValue("votearea", votearea);
                     insert.ExecuteNonQuery();
-                    con.Close();
                     try
                     {
                         insert = new SqlCommand("insert into history(event,dates) values('" + endtimes + " " + votename + " is finished','" + endtimes + "')", con);
@@ -159,6 +156,8 @@ namespace OVS
                     {
 
                     }
+                    con.Close();
+                    
                 }
 
 
@@ -184,7 +183,9 @@ namespace OVS
             voterid = vid;
             password = pass;
             nationalvote = true;
-            //set date time picker in custom format for that will be used to start vote
+            linkLabel1.Hide();
+
+            //set date time picker in custom format. That will be used to start vote
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "MM/dd/yyyy hh:mm:ss";
 
@@ -199,7 +200,6 @@ namespace OVS
             //First check whether vote already finished or not
 
             con.Open();
-            //works!
             SqlDataAdapter mda = new SqlDataAdapter("select startdate,enddate from admin where votename=@seatvote;", con);
             mda.SelectCommand.Parameters.Add(new SqlParameter("seatvote", "seatvote"));
            
@@ -235,27 +235,42 @@ namespace OVS
             }
             else if (endtimes < DateTime.Now)
             {
-                //vote already finished update database
+                //vote already finished update database for winning team
 
                 try
                 {
-                    ///watch out NEED FIXING!
-                    //try updating admin page if fails then there is multiple winners!
                     con.Open();
                     SqlCommand insert = new SqlCommand("Update admin set voterid=(select voterid from team where votecount=(select max(votecount) from team)) where votename='seatvote'", con);
                     insert.ExecuteNonQuery();
-                    con.Close();
+                   
+                    try
+                    {
+                        insert = new SqlCommand("insert into history(event,dates) values('" + endtimes + " " +seatname + " is finished','" + endtimes + "')", con);
+                        insert.ExecuteNonQuery();
+                    }
+                    catch
+                    {
 
+                    }
+                    con.Close();
                 }
                 catch
                 {
-                    //multiple winners! set admin id as winner
-                    con.Open();
+                    //multiple team winners! set admin id as winner
+                   
                     SqlCommand insert = new SqlCommand("Update admin set voterid=13 where votename='seatvote'", con);
-                    insert.Parameters.AddWithValue("votename", votename);
                     insert.ExecuteNonQuery();
+                    
+                    try
+                    {
+                        insert = new SqlCommand("insert into history(event,dates) values('" + endtimes + " " + seatname + " is finished','" + endtimes + "')", con);
+                        insert.ExecuteNonQuery();
+                    }
+                    catch
+                    {
+
+                    }
                     con.Close();
-                    //goes from here
                 }
             }
 
@@ -279,29 +294,85 @@ namespace OVS
                 con.Open();
                 try
                 {
-                    SqlCommand insert = new SqlCommand("Update standardvote set voterid=(select voterid from " + votename + " where votecount=(select max(votecount) from " + votename + " where votearea='" + votearea + "')) where (votename=@votename AND votearea=@votearea);", con);
-                    insert.Parameters.AddWithValue("votename", votename);
-                    insert.Parameters.AddWithValue("votearea", votearea);
-                    insert.ExecuteNonQuery();
-                    SqlDataAdapter mda = new SqlDataAdapter(@"SELECT uname FROM userinfo WHERE (voterid =(SELECT voterid FROM standardvote WHERE(votename = '" + votename + "' AND votearea='"+votearea+"')))", con);
+                    SqlCommand insert= new SqlCommand();
+                    SqlDataAdapter mda= new SqlDataAdapter();
                     DataTable dt = new DataTable();
-                    mda.Fill(dt);
-                    con.Close();
+                        
+                    if (nationalvote) {
+                        //done
+
+                        insert = new SqlCommand("Update admin set voterid=(select voterid from team where votecount=(select max(votecount) from team)) where votename='seatvote'", con);
+                        insert.ExecuteNonQuery();
+                        mda = new SqlDataAdapter(@"SELECT uname FROM userinfo WHERE (voterid=(select voterid from team where votecount=(select max(votecount) from team)))", con);
+                        mda.Fill(dt);
+                        con.Close();
+                    
+                    }
+                    else
+                    {
+
+                        insert = new SqlCommand("Update standardvote set voterid=(select voterid from " + votename + " where votecount=(select max(votecount) from " + votename + " where votearea='" + votearea + "')) where (votename=@votename AND votearea=@votearea);", con);
+                        insert.Parameters.AddWithValue("votename", votename);
+                        insert.Parameters.AddWithValue("votearea", votearea);
+                        insert.ExecuteNonQuery();
+                        mda = new SqlDataAdapter(@"SELECT uname FROM userinfo WHERE (voterid =(SELECT voterid FROM standardvote WHERE(votename = '" + votename + "' AND votearea='" + votearea + "')))", con);
+                        mda.Fill(dt);
+                        con.Close();
+                    }
                     DataRow dr = dt.Rows[0];
                     MessageBox.Show("Congrats! " + dr.ItemArray[0].ToString() + " for winning this Vote!");
 
+                    try
+                    {
+                        if (nationalvote) {
+                            insert = new SqlCommand("insert into history(event,dates) values('" + endtimes + " " + seatname + " is finished','" + endtimes + "')", con);
+                        
+                        
+                        }
+                        else
+                        {
+                            insert = new SqlCommand("insert into history(event,dates) values('" + endtimes + " " + votename + " is finished','" + endtimes + "')", con);
+                        }
+                            insert.ExecuteNonQuery();
+                    }
+                    catch
+                    {
+                        //already written once so no need to do anything now
+                    }
 
                 }
                 catch
                 {
                     //multiple winners!
                     MessageBox.Show("We got tie!");
-                    con.Open();
-                    SqlCommand insert = new SqlCommand("Update standardvote set voterid=13 where (votename=@votename AND votearea= @votearea);", con);
-                    insert.Parameters.AddWithValue("votename", votename);
-                    insert.Parameters.AddWithValue("votearea", votearea);
+                    
+                    SqlCommand insert = new SqlCommand();
+                    if (nationalvote) {
+
+                        insert = new SqlCommand("Update admin set voterid=13 where (votename='seatvote');", con);
+                    }
+                    else
+                    {
+                        insert = new SqlCommand("Update standardvote set voterid=13 where (votename=@votename AND votearea= @votearea);", con);
+                        insert.Parameters.AddWithValue("votename", votename);
+                        insert.Parameters.AddWithValue("votearea", votearea);
+                    }
                     insert.ExecuteNonQuery();
-                    SqlDataAdapter mda = new SqlDataAdapter(@"select voterid from " + votename + " where votecount=(select max(votecount) from " + votename + " where votearea='"+votearea+"')", con);
+                    SqlDataAdapter mda = new SqlDataAdapter();
+
+                    if (nationalvote)
+                    {
+                        //fix it!
+                       mda = new SqlDataAdapter(@"select voterid from " + votename + " where votecount=(select max(votecount) from " + votename + " where votearea='" + votearea + "')", con);
+
+
+                    }
+                    else {
+
+                         mda = new SqlDataAdapter(@"select voterid from " + votename + " where votecount=(select max(votecount) from " + votename + " where votearea='" + votearea + "')", con);
+
+                    }
+
                     DataTable dt = new DataTable();
                     mda.Fill(dt);
                     con.Close();
@@ -314,8 +385,17 @@ namespace OVS
                         winner += " " + dr.ItemArray[0].ToString();
                     }
                     MessageBox.Show("Congrats! " + winner + " You all got highest individual vote");
+                    con.Open();
+                    try
+                    {
+                        insert = new SqlCommand("insert into history(event,dates) values('" + endtimes + " " + (nationalvote?seatname:votename) + " is finished','" + endtimes + "')", con);
+                        insert.ExecuteNonQuery();
+                    }
+                    catch
+                    {
 
-
+                    }
+                    con.Close();
                 }
 
 
@@ -351,31 +431,68 @@ namespace OVS
         private void resetbutton_Click(object sender, EventArgs e)
         {
             //fixed and ran successfully
-
-            DialogResult dr = MessageBox.Show("Are You sure? It can't be undone", "Warning!", MessageBoxButtons.YesNo,
-        MessageBoxIcon.Information);
-            if (dr == DialogResult.Yes)
+            if (nationalvote)
             {
-                con.Open();
-                
-                SqlCommand insert = new SqlCommand("delete  from "+votename+" where votearea='"+votearea+"'", con);
-                
-                insert.ExecuteNonQuery();
+                DialogResult dr = MessageBox.Show("Are You sure? It can't be undone", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (dr == DialogResult.Yes)
+                {
+                    con.Open();
 
-                insert = new SqlCommand("delete from "+votename+"r where votearea='"+votearea+"'", con);
-                
-                insert.ExecuteNonQuery();
-                insert = new SqlCommand("Update standardvote set startdate=NULL, enddate = NULL,voterid=NULL where(votename=@votename AND votearea=@votearea);", con);
-                insert.Parameters.AddWithValue("votename", votename);
-                insert.Parameters.AddWithValue("votearea", votearea);
-                insert.ExecuteNonQuery();
-                con.Close();
-                MessageBox.Show( votename+" is reseted to default!");
+                    SqlCommand insert = new SqlCommand("Truncate table seatvote", con);
+
+                    insert.ExecuteNonQuery();
+
+                    insert = new SqlCommand("Truncate table seatvoter", con);
+
+                    insert.ExecuteNonQuery();
+
+                    insert = new SqlCommand("Truncate table team", con);
+
+                    insert.ExecuteNonQuery();
+
+
+                    insert = new SqlCommand("Truncate table teammember", con);
+
+                    insert.ExecuteNonQuery();
+                    
+                    insert = new SqlCommand("Update admin set startdate=NULL, enddate = NULL,voterid=NULL where(votename=@votename);", con);
+                    insert.Parameters.AddWithValue("votename", "seatvote");
+                   
+                    insert.ExecuteNonQuery();
+                    con.Close();
+                    MessageBox.Show("National vote is reseted to default!");
+                    StandardVote st = new StandardVote(activeform, loggedin, voterid, password, votename, votearea);
+                }
+
+
             }
+            else
+            {
+                DialogResult dr = MessageBox.Show("Are You sure? It can't be undone", "Warning!", MessageBoxButtons.YesNo,
+        MessageBoxIcon.Information);
+                if (dr == DialogResult.Yes)
+                {
+                    con.Open();
+
+                    SqlCommand insert = new SqlCommand("delete  from " + votename + " where votearea='" + votearea + "'", con);
+
+                    insert.ExecuteNonQuery();
+
+                    insert = new SqlCommand("delete from " + votename + "r where votearea='" + votearea + "'", con);
+
+                    insert.ExecuteNonQuery();
+                    insert = new SqlCommand("Update standardvote set startdate=NULL, enddate = NULL,voterid=NULL where(votename=@votename AND votearea=@votearea);", con);
+                    insert.Parameters.AddWithValue("votename", votename);
+                    insert.Parameters.AddWithValue("votearea", votearea);
+                    insert.ExecuteNonQuery();
+                    con.Close();
+                    MessageBox.Show(votename + " is reseted to default!");
+                    StandardVote st = new StandardVote(activeform,loggedin,voterid,password,votename,votearea);
+                }
 
 
 
-        
+            }
         }
 
        
@@ -406,9 +523,10 @@ namespace OVS
                     }
                     
                     insert.ExecuteNonQuery();
-                    con.Close(); 
+                    
                     MessageBox.Show("The vote has begun");
-                    StandardVote st = new StandardVote(activeform, loggedin, voterid, password, votename, votearea);
+                    con.Close(); 
+                   StandardVote st = new StandardVote(activeform, loggedin, voterid, password, votename, votearea);
                     
 
                 }
@@ -416,8 +534,9 @@ namespace OVS
                 {
                     MessageBox.Show("Invalid Date");
                     con.Close();
+                    
                 }
-                
+               
             
             }
             else if (time)
@@ -593,13 +712,25 @@ namespace OVS
             hideaLL();
             if (switche)
             {
+                DataTable dt = new DataTable();
+
+                if(nationalvote){
+                    con.Open();
+                    SqlDataAdapter mda = new SqlDataAdapter("select startdate,enddate from admin where votename=@seatvote;", con);
+                    mda.SelectCommand.Parameters.Add(new SqlParameter("seatvote", "seatvote"));
+                    mda.Fill(dt);
+                    con.Close();
+                
+                }
+                else{
                 con.Open();
                 SqlDataAdapter mda = new SqlDataAdapter("select startdate,enddate from StandardVote where (votename=@votename AND votearea=@votearea);", con);
                 mda.SelectCommand.Parameters.Add(new SqlParameter("votename", votename));
                 mda.SelectCommand.Parameters.Add(new SqlParameter("votearea", votearea));
-                DataTable dt = new DataTable();
+                dt = new DataTable();
                 mda.Fill(dt);
                 con.Close();
+                }
                 DataRow dr = dt.Rows[0];
                 starttimebox.Text = dr.ItemArray[0].ToString();
                 endtimebox.Text = dr.ItemArray[1].ToString();
@@ -613,9 +744,7 @@ namespace OVS
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //done!
-            //something i should deal about :P
-            //what the hell am i doing 
+           
             if (voterid == "13")
             {
                 con.Open();
