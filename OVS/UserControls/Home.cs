@@ -23,14 +23,16 @@ namespace OVS
         //voterid and password holder
         string voterid, password;
 
+        //static sql data connection
         static string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
         static SqlConnection con = new SqlConnection(connstr);
 
         public Home(Form form,Boolean log,string vid,string pass)
         {
             //base constructor 
+
             InitializeComponent();
-            
+
             //receive the passed form and decorates it
             activeform = form;
             activeform.Controls.Clear();
@@ -53,6 +55,7 @@ namespace OVS
             
             con.Close();
 
+            //text animation 
             text = " Welcome to digital online voting system. Total users registered as voter so far is " + dt.Rows.Count + "      ";
             timer1.Start();
 
@@ -63,7 +66,7 @@ namespace OVS
 
             if (loggedin)
             {
-                //successful login change the log in text
+                //successful login change the log in label text to log out
                 Login_Label.Text = "লগ আউট (" + voterid + ")";
  
                 //hide log in options
@@ -78,6 +81,7 @@ namespace OVS
             {
                 //logged out? reset everything
 
+                //revert the login label text to log in
                 Login_Label.Text = "লগ ইন";
                 pwd_label.Show();
                 Voterid_Box.Show();
@@ -99,20 +103,20 @@ namespace OVS
             activeform.Controls.Add(this);
             activeform.Text = "Home";
 
+            //registered user counter
             con.Open();
             SqlDataAdapter mda = new SqlDataAdapter("select * from userinfo", con);
             DataTable dt=new DataTable();
             mda.Fill(dt);
+
+            //history genereator
             mda = new SqlDataAdapter("select event from history", con);
             DataTable dk = new DataTable();
             mda.Fill(dk);
             dataGridView1.DataSource = dk;
-           
-
-
-
-
             con.Close();
+            //text animation about registered users
+
             text = " Welcome to digital online voting system. Total users registered as voter so far is "+dt.Rows.Count+"      ";
             timer1.Start();
         }
@@ -163,6 +167,8 @@ namespace OVS
         {
             if (loggedin)
             {
+                //make sure user logged in and invoke Election page
+
                 Election election = new Election(activeform, loggedin, voterid, password);
             }
             else {
@@ -200,7 +206,7 @@ namespace OVS
                         loggedin = true;
                         Login_Label.Text = "লগ আউট ("+voterid+")";
                         
-                        
+                        //login option hidden
                         pwd_label.Hide();
                         Voterid_Box.Hide();
                         label1.Hide();
@@ -208,24 +214,11 @@ namespace OVS
                         SignUp_label.Hide();
                         Forget_Password_label.Hide();
 
-                        if (voterid == "13")
-                        {
-
-                            //TODO Show admin Controls
-                        
-
-                        }
-
-                        else
-                        {
-
-                            //TODO Show general user control
-                        }
-
 
                     }
                     else
                     {
+                        //generate an argument exception to execute the catch block
                         throw new ArgumentException();
                     }
                 }
@@ -269,49 +262,44 @@ namespace OVS
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-
-          
-                textBox1.Text += text.ElementAt(turn++%text.Length);
-                if (turn % 30 == 0) {
-                    if (key)
-                    {
-                        dataGridView1.Hide();
-                        label2.Hide();
-                    }
-                    else {
-                        dataGridView1.Show();
-                        
-                        label2.Show();
-                    
-                    
-                    }
-                    key = !key;
-                
-                
+            //text animation
+            textBox1.Text += text.ElementAt(turn++%text.Length);
+            
+            //blinking history
+            if (turn % 30 == 0) {
+                if (key)
+                {
+                    dataGridView1.Hide();
+                    label2.Hide();
                 }
-            
-            
-           
+                else {
+                    dataGridView1.Show();
+                    label2.Show();
+                }
+                key = !key;
+            }          
         }
 
         private void label2_Click(object sender, EventArgs e)
         {
+            //Reset history when the history label is clicked
             
-            DialogResult dr = MessageBox.Show("আপনি কি নিশ্চিত? history থেকে সব তথ্য মুছে ফেলা হবে!", "সতর্কবার্তা!", MessageBoxButtons.YesNo,
-        MessageBoxIcon.Warning);
+            //asks for confirmation
+            DialogResult dr = MessageBox.Show("আপনি কি নিশ্চিত? history থেকে সব তথ্য মুছে ফেলা হবে!", "সতর্কবার্তা!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (dr == DialogResult.Yes)
             {
                 con.Open();
                 SqlCommand insert = new SqlCommand("TRUNCATE table history", con);
-
                 insert.ExecuteNonQuery();
-
+                con.Close();
+                Home s=new Home(activeform);
             }
             
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            //show results if datagrid get clicked
             Stats st = new Stats(activeform,loggedin,voterid,password);
         }
     
