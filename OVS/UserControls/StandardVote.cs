@@ -299,7 +299,7 @@ namespace OVS
                     DataTable dt = new DataTable();
                         
                     if (nationalvote) {
-                        //done
+                        // done(tested)
 
                         insert = new SqlCommand("Update admin set voterid=(select voterid from team where votecount=(select max(votecount) from team)) where votename='seatvote'", con);
                         insert.ExecuteNonQuery();
@@ -362,8 +362,8 @@ namespace OVS
 
                     if (nationalvote)
                     {
-                        //fix it!
-                       mda = new SqlDataAdapter(@"select voterid from " + votename + " where votecount=(select max(votecount) from " + votename + " where votearea='" + votearea + "')", con);
+                        //done
+                       mda = new SqlDataAdapter(@"select voterid from team where votecount=(select max(votecount) from team )", con);
 
 
                     }
