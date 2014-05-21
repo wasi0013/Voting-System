@@ -41,9 +41,11 @@ Still to come:
 
 Some Overview on Cyclomatic Complexity:
 ---------------------------------------
+generated using microsoft visual studio 2010 ultimate 
+
 |Forms And User Control	|Cyclomatic Complexity	|Depth of Inheritance	|Class Coupling	|Lines of Code|
 |-----------------------|----------------------|---------------------|---------------|-------------|
-|OVS	|326	|7	|101	|3592|
+|OVS	|366	|7	|101	|3794|
 |Program	|1|	1|	3|	3|
 |Main	|5	|7	|14	|20|
 |National Election|	5	|7	|14	|20|
@@ -55,3 +57,9 @@ Some Overview on Cyclomatic Complexity:
 |Signup	|34	|7	|45	|443|
 |Standard Vote	|59	|7	|49 |	603|
 |User Information|	38	|7|	50|	589|
+
+Actual lines of code:
+---------------------
+Using git bash : 24,178 lines [Command: wc -l $(git ls-files)]
+Written code: 3,794 lines
+Automatically generated: rest

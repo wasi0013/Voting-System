@@ -18,7 +18,7 @@ namespace OVS
 
         Form activeform;
         Boolean loggedin = false,nationalvote=false;
-        string voterid, password, votename,votearea,ets,seatname;
+        string voterid, password, votename,votearea,ets,seatname,seat,seatid;
         Boolean switche = true;
 
         int hours = 0, mins = 0, secs = 0;
@@ -179,6 +179,8 @@ namespace OVS
             activeform.Width = this.Width;
             seatname = seatn;
             activeform.Text = seatname;
+            seat=seatname.Trim().Split('(')[0];
+            seatid=seatname.Trim().Split('(')[1].Split(')')[0];
             loggedin = log;
             voterid = vid;
             password = pass;
@@ -461,7 +463,7 @@ namespace OVS
                     insert.ExecuteNonQuery();
                     con.Close();
                     MessageBox.Show("National vote is reseted to default!");
-                    StandardVote st = new StandardVote(activeform, loggedin, voterid, password, votename, votearea);
+                    StandardVote st = new StandardVote(activeform, loggedin, voterid, password,seatname);
                 }
 
 
@@ -498,15 +500,26 @@ namespace OVS
        
         private void button1_Click(object sender, EventArgs e)
         {
-            //done
             hideaLL();
             if (voterid == "13")
             {
                 
                 con.Open();
-                SqlCommand insert = new SqlCommand("Update standardvote set startdate=@startdate, enddate = @enddate where(votename=@votename AND votearea=@votearea);", con);
-                insert.Parameters.AddWithValue("votename", votename);
-                insert.Parameters.AddWithValue("votearea", votearea);
+                SqlCommand insert;
+                if (nationalvote)
+                {
+                    insert = new SqlCommand("Update admin set startdate=@startdate, enddate = @enddate where votename=@votename", con);
+                    insert.Parameters.AddWithValue("votename", "seatvote");
+                    
+                 
+                }
+                else
+                {
+
+                    insert = new SqlCommand("Update standardvote set startdate=@startdate, enddate = @enddate where(votename=@votename AND votearea=@votearea);", con);
+                    insert.Parameters.AddWithValue("votename", votename);
+                    insert.Parameters.AddWithValue("votearea", votearea);
+                }
                 
                try
                 {
@@ -525,9 +538,15 @@ namespace OVS
                     insert.ExecuteNonQuery();
                     
                     MessageBox.Show("The vote has begun");
-                    con.Close(); 
-                   StandardVote st = new StandardVote(activeform, loggedin, voterid, password, votename, votearea);
-                    
+                    con.Close();
+                    if (nationalvote) {
+                        StandardVote st = new StandardVote(activeform, loggedin, voterid, password, seatname);
+                    }
+                    else
+                    {
+
+                        StandardVote st = new StandardVote(activeform, loggedin, voterid, password, votename, votearea);
+                    }
 
                 }
                 catch
@@ -570,7 +589,7 @@ namespace OVS
        
         private void regbutton_Click(object sender, EventArgs e)
         {
-            //done
+            //done isn't visible to nationalvote
             hideaLL();
             
 
@@ -622,7 +641,8 @@ namespace OVS
 
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //done
+            //done national vote
+           
             hideaLL();
             if (time || voterid == "13")
             {
@@ -652,12 +672,22 @@ namespace OVS
                     else
                     {
                         //check already voted?
-
+                        //done for nationalvote
                         con.Open();
                         DataTable dk = new DataTable();
-                        SqlDataAdapter mda = new SqlDataAdapter("select * from " + votename + "r where (voterid=@voterid and votearea=@votearea)", con);
-                        mda.SelectCommand.Parameters.Add(new SqlParameter("voterid", voterid));
-                        mda.SelectCommand.Parameters.Add(new SqlParameter("votearea", votearea));
+                        SqlDataAdapter mda;
+
+                        if (nationalvote)
+                        {
+                            mda = new SqlDataAdapter("select * from seatvoter where voterid=@voterid", con);
+                         
+                        }
+                        else
+                        {
+                            mda = new SqlDataAdapter("select * from " + votename + "r where (voterid=@voterid and votearea=@votearea)", con);
+                            mda.SelectCommand.Parameters.Add(new SqlParameter("voterid", voterid));
+                            mda.SelectCommand.Parameters.Add(new SqlParameter("votearea", votearea));
+                        }
                         mda.Fill(dk);
                         con.Close();
 
@@ -666,8 +696,14 @@ namespace OVS
                         {
 
                             MessageBox.Show("You already voted once so can't vote again!");
-                            StandardVote hm = new StandardVote(activeform, loggedin, voterid, password, votename,votearea);
-
+                            if (nationalvote) {
+                                StandardVote hm = new StandardVote(activeform, loggedin, voterid, password, seatname);
+                            
+                            }
+                            else
+                            {
+                                StandardVote hm = new StandardVote(activeform, loggedin, voterid, password, votename, votearea);
+                            }
                         }
                         else
                         {
@@ -678,7 +714,17 @@ namespace OVS
                             button1.Show();
                             comboBox1.Show();
                             con.Open();
-                            SqlDataAdapter dataadapter = new SqlDataAdapter("SELECT uname as Name , voterid as Voter_Id FROM userinfo where voterid in (SELECT voterid from " + votename + " where votearea='"+votearea+"');", con);
+                            SqlDataAdapter dataadapter;
+                            if (nationalvote)
+                            {
+                                dataadapter = new SqlDataAdapter("SELECT uname as Name , voterid as Voter_Id FROM userinfo where voterid in (SELECT voterid from teammember where seatid='"+seatid+"');", con);
+                            
+                            }
+                            else {
+
+                                dataadapter = new SqlDataAdapter("SELECT uname as Name , voterid as Voter_Id FROM userinfo where voterid in (SELECT voterid from " + votename + " where votearea='" + votearea + "');", con);
+                            
+                            }
                             DataTable dt = new DataTable();
                             dataadapter.Fill(dt);
                             con.Close();
@@ -708,7 +754,7 @@ namespace OVS
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
               //voter shomoikal
-            //done
+            //done national vote
             hideaLL();
             if (switche)
             {
@@ -744,6 +790,7 @@ namespace OVS
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            //done it isn't visible to national vote
            
             if (voterid == "13")
             {
