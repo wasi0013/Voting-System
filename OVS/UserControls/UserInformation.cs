@@ -17,8 +17,9 @@ namespace OVS
         {
             InitializeComponent();
         }
-        static string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
 
+        //fixed connection open close issues
+        static string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
         static SqlConnection con = new SqlConnection(connstr);
 
         Form activeform;
@@ -55,7 +56,8 @@ namespace OVS
             repassbox.Hide();
             vidbox.Text = vid;
             passbox.Text = pass;
-
+            if (voterid == "13") groupBox1.Show();
+            else groupBox1.Hide();
             con.Open();
             SqlDataAdapter dataadapter = new SqlDataAdapter("SELECT pourashava from userinfo where voterid='" + voterid + "'", con);
             DataTable dt = new DataTable();
@@ -172,8 +174,6 @@ namespace OVS
 
             comboBox3.Show();
             comboBox3.Items.Clear();
-            string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
-            SqlConnection con = new SqlConnection(connstr);
             con.Open();
             SqlDataAdapter dataadapter = new SqlDataAdapter("SELECT votearea from Standardvote where votename='citycorporationvote'", con);
             DataTable dt = new DataTable();
@@ -205,6 +205,7 @@ namespace OVS
             dataadapter = new SqlDataAdapter("SELECT votearea from Standardvote where votename='pourashavavote'", con);
             dt = new DataTable();
             dataadapter.Fill(dt);
+            con.Close();
             i = -1; j = dt.Rows.Count;
 
             while (++i < j)
@@ -234,12 +235,10 @@ namespace OVS
             phonebox.ReadOnly = true;
             bloodbox.ReadOnly = true;
             addressbox.ReadOnly = true;
+            comboBox1.Enabled = comboBox2.Enabled = comboBox3.Enabled = false;
 
             //And reload last saved data from the database
-
-            string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
-
-            SqlConnection con = new SqlConnection(connstr);
+            con.Open();
             DataTable dt = new DataTable();
 
             //collect all the user information from the database table userinfo
@@ -247,6 +246,7 @@ namespace OVS
             mda.SelectCommand.Parameters.Add(new SqlParameter("voterid", voterid));
             mda.SelectCommand.Parameters.Add(new SqlParameter("password", password));
             mda.Fill(dt);
+            con.Close();
             DataRow dr = dt.Rows[0];
             namebox.Text = dr.ItemArray[0].ToString();
             fnamebox.Text = dr.ItemArray[3].ToString();
@@ -266,10 +266,7 @@ namespace OVS
              
             
             //ongoing task
-            string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
-            SqlConnection con = new SqlConnection(connstr);
-            con.Open();
-
+            
             if (passbox.Text == "")
             {
                 MessageBox.Show("Invalid Password");
@@ -327,7 +324,7 @@ namespace OVS
                 //This connection string should be changed if necessary
 
                 //update userinfo according to the change
-
+                con.Open();
                 SqlCommand insert = new SqlCommand("Update userinfo set uname=@uname,password=@password,fname=@fname,mname=@mname,email=@email,contact=@contact,dob=@dob,bloodgroup=@bloodgroup,address=@address,doreg=@doreg,upojela=@upojela,pourashava=@pourashava,citycorporation=@citycorporation where voterid=@voterid;", con);
 
                 insert.Parameters.AddWithValue("uname", namebox.Text.Trim());
@@ -350,6 +347,7 @@ namespace OVS
 
                 // Execute query 
                 insert.ExecuteNonQuery();
+                con.Close();
                 
                 //Fix warning color
                 mailbox.BackColor = agebox.BackColor = mailbox.BackColor = System.Drawing.Color.White;
@@ -425,6 +423,58 @@ namespace OVS
             }
 
 
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            //Master reset button 
+             DialogResult dr = MessageBox.Show("Are You sure? It can't be undone", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+             if (dr == DialogResult.Yes)
+             {
+                 con.Open();
+
+                 SqlCommand insert = new SqlCommand("Truncate table citycorporationvote", con);
+                 insert.ExecuteNonQuery();
+                 insert = new SqlCommand("Truncate table citycorporationvoter", con);
+                 insert.ExecuteNonQuery();
+                 insert = new SqlCommand("Truncate table pourashavavote", con);
+                 insert.ExecuteNonQuery();
+                 insert = new SqlCommand("Truncate table pourashavavoter", con);
+                 insert.ExecuteNonQuery();
+                 insert = new SqlCommand("Truncate table quickvote", con);
+                 insert.ExecuteNonQuery();
+                 insert = new SqlCommand("Truncate table quickvoter", con);
+                 insert.ExecuteNonQuery();
+                 insert = new SqlCommand("Truncate table upojelavote", con);
+                 insert.ExecuteNonQuery();
+                 insert = new SqlCommand("Truncate table upojelavoter", con);
+                 insert.ExecuteNonQuery();
+                 insert = new SqlCommand("Truncate table seatvote", con);
+                 insert.ExecuteNonQuery();
+                 insert = new SqlCommand("Truncate table seatvoter", con);
+                 insert.ExecuteNonQuery();
+                 insert = new SqlCommand("Truncate table team", con);
+                 insert.ExecuteNonQuery();
+                 insert = new SqlCommand("Truncate table teammember", con);
+                 insert.ExecuteNonQuery();
+                 insert = new SqlCommand("update admin set voterid=NULL,startdate=NULL,enddate=NULL", con);
+                 insert.ExecuteNonQuery();
+
+                 insert = new SqlCommand("update standardvote set voterid=NULL,startdate=NULL,enddate=NULL", con);
+                 insert.ExecuteNonQuery();
+                 
+                 insert = new SqlCommand("Delete from userinfo", con);
+                 insert.ExecuteNonQuery();
+                 insert = new SqlCommand("Insert into userinfo(voterid,password,pourashava,upojela,citycorporation,dob) values('13','13','raozan','raozan','chittagong','12-16-1971')", con);
+                 insert.ExecuteNonQuery();
+                 con.Close();
+                 MessageBox.Show("The Software is Reseted to Default!");
+                 UserInformation us = new UserInformation(activeform, loggedin, voterid, password);
+             }
+            
+            
+            
+            
         }
 
     }

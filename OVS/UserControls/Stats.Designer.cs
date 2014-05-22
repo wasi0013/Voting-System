@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.voteresult = new System.Windows.Forms.LinkLabel();
             this.nationalvoteresult = new System.Windows.Forms.LinkLabel();
             this.button1 = new System.Windows.Forms.Button();
@@ -41,6 +41,7 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -76,7 +77,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.button1.Location = new System.Drawing.Point(553, 139);
+            this.button1.Location = new System.Drawing.Point(750, 138);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(101, 27);
             this.button1.TabIndex = 2;
@@ -87,18 +88,18 @@
             // 
             // chart1
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.chart1.Legends.Add(legend4);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(27, 228);
             this.chart1.Name = "chart1";
-            series4.ChartArea = "ChartArea1";
-            series4.IsXValueIndexed = true;
-            series4.Legend = "Legend1";
-            series4.Name = "Vote Result";
-            series4.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.String;
-            this.chart1.Series.Add(series4);
+            series1.ChartArea = "ChartArea1";
+            series1.IsXValueIndexed = true;
+            series1.Legend = "Legend1";
+            series1.Name = "Vote Result";
+            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.String;
+            this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(1285, 458);
             this.chart1.TabIndex = 3;
             this.chart1.Text = "chart1";
@@ -119,12 +120,13 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.BackColor = System.Drawing.SystemColors.Control;
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.label1.ForeColor = System.Drawing.Color.DarkBlue;
             this.label1.Location = new System.Drawing.Point(632, 191);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 26);
+            this.label1.Size = new System.Drawing.Size(77, 28);
             this.label1.TabIndex = 25;
             this.label1.Text = "বিজয়ীঃ ";
             this.label1.Visible = false;
@@ -183,6 +185,20 @@
             this.comboBox2.Visible = false;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.BackColor = System.Drawing.Color.Transparent;
+            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.linkLabel1.LinkColor = System.Drawing.Color.White;
+            this.linkLabel1.Location = new System.Drawing.Point(569, 139);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(164, 26);
+            this.linkLabel1.TabIndex = 29;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "দলীয় ভোট ফলাফল";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
             // Stats
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -190,6 +206,7 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.BackgroundImage = global::OVS.Properties.Resources._3d_488;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.comboBox1);
@@ -223,5 +240,6 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

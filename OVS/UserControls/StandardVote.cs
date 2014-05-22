@@ -327,19 +327,23 @@ namespace OVS
                     try
                     {
                         if (nationalvote) {
+                            con.Open();
                             insert = new SqlCommand("insert into history(event,dates) values('" + endtimes + " " + seatname + " is finished','" + endtimes + "')", con);
-                        
+                            
                         
                         }
                         else
                         {
+                            con.Open();
                             insert = new SqlCommand("insert into history(event,dates) values('" + endtimes + " " + votename + " is finished','" + endtimes + "')", con);
                         }
                             insert.ExecuteNonQuery();
+                            con.Close();
                     }
                     catch
                     {
                         //already written once so no need to do anything now
+                        con.Close();
                     }
 
                 }
@@ -565,11 +569,25 @@ namespace OVS
 
                     con.Open();
                     string votedfor = comboBox1.Text.Trim();
-                    SqlCommand insert = new SqlCommand("Update " + votename + " set votecount= votecount+1 where ((voterid=(select voterid from userinfo where uname ='" + votedfor + "')) and votearea=@votearea);", con);
-                    insert.Parameters.AddWithValue("votearea",votearea);
-                    insert.ExecuteNonQuery();
-                    insert = new SqlCommand("insert into " + votename + "r(voterid,votearea) values(" + voterid + ",'"+votearea+"');", con);
-                    insert.ExecuteNonQuery();
+                    SqlCommand insert= new SqlCommand();
+                    if (nationalvote)
+                    {
+                        insert = new SqlCommand("Update teammember set votecount=votecount+1 where ((voterid=(select voterid from userinfo where uname ='" + votedfor + "')) and seatid=@seatid);", con);
+                        insert.Parameters.AddWithValue("seatid", seatid);
+                        insert.ExecuteNonQuery();
+                        insert = new SqlCommand("Update team set votecount=votecount+1 where teamname =(select teamname from teammember where voterid=@voterid)", con);
+                        insert.Parameters.AddWithValue("voterid", voterid);
+                        insert.ExecuteNonQuery();
+                        
+
+                    }
+                    else {
+                        insert = new SqlCommand("Update " + votename + " set votecount= votecount+1 where ((voterid=(select voterid from userinfo where uname ='" + votedfor + "')) and votearea=@votearea);", con);
+                        insert.Parameters.AddWithValue("votearea", votearea);
+                        insert.ExecuteNonQuery();
+                        insert = new SqlCommand("insert into " + votename + "r(voterid,votearea) values(" + voterid + ",'" + votearea + "');", con);
+                        insert.ExecuteNonQuery();
+                    }
                     con.Close();
                 }
                 else
@@ -680,6 +698,8 @@ namespace OVS
                         if (nationalvote)
                         {
                             mda = new SqlDataAdapter("select * from seatvoter where voterid=@voterid", con);
+                            mda.SelectCommand.Parameters.Add(new SqlParameter("voterid", voterid));
+                            
                          
                         }
                         else
@@ -729,14 +749,17 @@ namespace OVS
                             dataadapter.Fill(dt);
                             con.Close();
                             int i = dt.Rows.Count;
-                            DataRow dr = dt.Rows[0];
-                            comboBox1.Items.Add(dr.ItemArray[0].ToString());
-                            comboBox1.Text = dr.ItemArray[0].ToString();
-                            while (i-- > 1)
+                            if (i > 0)
                             {
-                                dr = dt.Rows[i];
-
+                                DataRow dr = dt.Rows[0];
                                 comboBox1.Items.Add(dr.ItemArray[0].ToString());
+                                comboBox1.Text = dr.ItemArray[0].ToString();
+                                while (i-- > 1)
+                                {
+                                    dr = dt.Rows[i];
+
+                                    comboBox1.Items.Add(dr.ItemArray[0].ToString());
+                                }
                             }
 
 

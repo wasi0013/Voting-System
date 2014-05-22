@@ -269,6 +269,7 @@ namespace OVS
                         insert.Parameters.AddWithValue("seatid", 1);
                         insert.ExecuteNonQuery();
                         MessageBox.Show("Thanks for registering");
+                        NationalElection ns = new NationalElection(activeform, loggedin, voterid, password);
                     }
                     else {
 
@@ -306,6 +307,8 @@ namespace OVS
                 {
 
                     MessageBox.Show("You are already member of a team!");
+                    NationalElection ns = new NationalElection(activeform, loggedin, voterid, password);
+
 
                 }
                 else

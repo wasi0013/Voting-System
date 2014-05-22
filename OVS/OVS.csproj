@@ -102,6 +102,12 @@
     <Compile Include="UserControls\Signup.Designer.cs">
       <DependentUpon>Signup.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\TeamStats.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\TeamStats.Designer.cs">
+      <DependentUpon>TeamStats.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UserInformation.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -141,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Signup.resx">
       <DependentUpon>Signup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TeamStats.resx">
+      <DependentUpon>TeamStats.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UserInformation.resx">
       <DependentUpon>UserInformation.cs</DependentUpon>

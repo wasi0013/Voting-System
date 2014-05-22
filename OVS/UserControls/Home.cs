@@ -24,6 +24,7 @@ namespace OVS
         string voterid, password;
 
         //static sql data connection
+        //fixed connection open close issues
         static string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
         static SqlConnection con = new SqlConnection(connstr);
 

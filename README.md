@@ -25,11 +25,13 @@ Successfully implemented:
   * Pourashava Vote
   * Team registration and management for National Election
   * Seats Planning 
+  * National Election Voting process
+  * Master Reset control on Admin
+
 
 Under Development:
 ------------------
-
-  * National Election Voting process
+  * National election result
   * History (Impemented some animation with text box and string on Home) 
 
 Still to come:

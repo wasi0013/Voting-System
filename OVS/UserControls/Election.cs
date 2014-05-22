@@ -20,6 +20,11 @@ namespace OVS
         string voterid, password;
         Boolean loggedin = false;
         Boolean key = true;
+        //fixed connection open close issues
+        static string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
+        static SqlConnection con = new SqlConnection(connstr);
+                    
+
         public Election(Form form,Boolean log,string vid,string pass)
         {
             InitializeComponent();
@@ -68,12 +73,11 @@ namespace OVS
                 {
                     comboBox3.Show();
                     comboBox3.Items.Clear();
-                    string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
-                    SqlConnection con = new SqlConnection(connstr);
                     con.Open();
                     SqlDataAdapter dataadapter = new SqlDataAdapter("SELECT votearea from Standardvote where votename='upojelavote'", con);
                     DataTable dt = new DataTable();
                     dataadapter.Fill(dt);
+                    con.Close();
                     int i = -1, j = dt.Rows.Count;
                     DataRow dr;
                     while (++i < j)
@@ -89,12 +93,11 @@ namespace OVS
 
                 comboBox3.Show();
                 comboBox3.Items.Clear();
-                string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
-                SqlConnection con = new SqlConnection(connstr);
                 con.Open();
                 SqlDataAdapter dataadapter = new SqlDataAdapter("SELECT upojela from userinfo where voterid='" + voterid + "'", con);
                 DataTable dt = new DataTable();
                 dataadapter.Fill(dt);
+                con.Close();
                 int i = -1, j = dt.Rows.Count;
                 DataRow dr;
                 while (++i < j)
@@ -150,12 +153,11 @@ namespace OVS
                 {
                     comboBox1.Show();
                     comboBox1.Items.Clear();
-                    string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
-                    SqlConnection con = new SqlConnection(connstr);
                     con.Open();
                     SqlDataAdapter dataadapter = new SqlDataAdapter("SELECT votearea from Standardvote where votename='citycorporationvote'", con);
                     DataTable dt = new DataTable();
                     dataadapter.Fill(dt);
+                    con.Close();
                     int i = -1, j = dt.Rows.Count;
                     DataRow dr;
                     while (++i < j)
@@ -171,12 +173,11 @@ namespace OVS
 
                 comboBox1.Show();
                 comboBox1.Items.Clear();
-                string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
-                SqlConnection con = new SqlConnection(connstr);
                 con.Open();
                 SqlDataAdapter dataadapter = new SqlDataAdapter("SELECT citycorporation from userinfo where voterid='" + voterid + "'", con);
                 DataTable dt = new DataTable();
                 dataadapter.Fill(dt);
+                con.Close();
                 int i = -1, j = dt.Rows.Count;
                 DataRow dr;
                 while (++i < j)
@@ -209,12 +210,11 @@ namespace OVS
                 {
                     comboBox2.Show();
                     comboBox2.Items.Clear();
-                    string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
-                    SqlConnection con = new SqlConnection(connstr);
                     con.Open();
                     SqlDataAdapter dataadapter = new SqlDataAdapter("SELECT votearea from Standardvote where votename='pourashavavote'", con);
                     DataTable dt = new DataTable();
                     dataadapter.Fill(dt);
+                    con.Close();
                     int i = -1, j = dt.Rows.Count;
                     DataRow dr;
                     while (++i < j)
@@ -230,12 +230,11 @@ namespace OVS
 
                     comboBox2.Show();
                     comboBox2.Items.Clear();
-                    string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
-                    SqlConnection con = new SqlConnection(connstr);
                     con.Open();
                     SqlDataAdapter dataadapter = new SqlDataAdapter("SELECT pourashava from userinfo where voterid='"+voterid+"'", con);
                     DataTable dt = new DataTable();
                     dataadapter.Fill(dt);
+                    con.Close();
                     int i = -1, j = dt.Rows.Count;
                     DataRow dr;
                     while (++i < j)

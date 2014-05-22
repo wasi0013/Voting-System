@@ -22,6 +22,7 @@ namespace OVS
         Boolean clicked = true;
 
         //static sql connections
+        //fixed connection open and close issues
         static string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
         static  SqlConnection con = new SqlConnection(connstr);
 
@@ -202,8 +203,12 @@ namespace OVS
 
                 comboBox1.Items.Add(dr.ItemArray[0].ToString());
             }
-            con.Close();
+            
+        }
 
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            TeamStats ts = new TeamStats(activeform,loggedin,voterid,password);
         }
 
     }
