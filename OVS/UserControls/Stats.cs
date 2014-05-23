@@ -74,6 +74,7 @@ namespace OVS
                 chart1.Show();
                 label1.Show();
                 comboBox1.Show();
+                comboBox1.Enabled = true;
                 button2.Show();
                 comboBox1.Items.Clear();
                 comboBox1.Items.Add("quickvote");

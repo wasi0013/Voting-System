@@ -67,4 +67,4 @@ Automatically generated: rest
 
 Total Work Hour:
 -----------------
-36 hours and 32 mins
+36 hours and 36 mins

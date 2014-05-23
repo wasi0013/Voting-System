@@ -232,6 +232,7 @@
             this.repassbox.Size = new System.Drawing.Size(458, 29);
             this.repassbox.TabIndex = 77;
             this.repassbox.UseSystemPasswordChar = true;
+            this.repassbox.TextChanged += new System.EventHandler(this.repassbox_TextChanged);
             // 
             // passbox
             // 
@@ -243,6 +244,7 @@
             this.passbox.Size = new System.Drawing.Size(458, 29);
             this.passbox.TabIndex = 76;
             this.passbox.UseSystemPasswordChar = true;
+            this.passbox.TextChanged += new System.EventHandler(this.passbox_TextChanged);
             // 
             // label8
             // 

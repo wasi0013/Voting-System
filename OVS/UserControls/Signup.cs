@@ -100,28 +100,7 @@ namespace OVS
             Home hm = new Home(activeform,loggedin,voterid,password);
         }
 
-        private void textBox8_TextChanged(object sender, EventArgs e)
-        {
-            //progress bar magic
-
-            progressBar1.Maximum = 180;
-            progressBar1.Value=passbox.Text.Distinct().ToArray().Length*10;
-            
-            if (progressBar1.Value > 119)
-            {
-                label9.Text = "Strong!"; 
-            
-            }
-            else if (progressBar1.Value > 55)
-            {
-
-                label9.Text = "Medium";
-            }
-            else {
-                label9.Text = "Poor!";
-            }
-
-        }
+     
 
         private void ok_button_Click(object sender, EventArgs e)
         {
@@ -251,20 +230,7 @@ namespace OVS
 
         }
 
-        private void passbox_TextChanged(object sender, EventArgs e)
-        {
-            if (repassbox.Text == passbox.Text)
-            {
-                repassbox.BackColor = System.Drawing.Color.LightGreen;
-                alright = true;
-
-            }
-            else {
-
-                repassbox.BackColor = System.Drawing.Color.White;
-                alright = false;
-            }
-        }
+       
         public static Int32 GetAge( DateTime dateOfBirth)
         {
             var today = DateTime.Today;
@@ -292,5 +258,47 @@ namespace OVS
 
             }
         }
+
+        private void repassbox_TextChanged(object sender, EventArgs e)
+        {
+            if (repassbox.Text == passbox.Text)
+            {
+                repassbox.BackColor = System.Drawing.Color.LightGreen;
+                alright = true;
+
+            }
+            else
+            {
+
+                repassbox.BackColor = System.Drawing.Color.White;
+                alright = false;
+            }
+
+        }
+
+        private void passbox_TextChanged(object sender, EventArgs e)
+        {
+
+            progressBar1.Maximum = 180;
+            progressBar1.Value = passbox.Text.Distinct().ToArray().Length * 10;
+
+            if (progressBar1.Value > 119)
+            {
+                label9.Text = "Strong!";
+
+            }
+            else if (progressBar1.Value > 55)
+            {
+
+                label9.Text = "Medium";
+            }
+            else
+            {
+                label9.Text = "Poor!";
+            }
+
+        }
+
+    
     }
 }

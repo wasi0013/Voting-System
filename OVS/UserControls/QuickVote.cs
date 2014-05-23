@@ -478,17 +478,18 @@ namespace OVS
                     insert.ExecuteNonQuery();
                     
                     MessageBox.Show("The vote has begun");
+                    con.Close();
                     QuickVote ne = new QuickVote(activeform, loggedin, voterid, password, votename);
                  
             
                 }
                 catch{
                     MessageBox.Show("Invalid Date");
-                
+                    con.Close();
                 }
                 
                 
-            con.Close();
+            
             }
             else if (time)
             {
