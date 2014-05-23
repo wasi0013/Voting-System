@@ -3,6 +3,8 @@ Voting System Application
 
 A simple voting system application in Bangla based on Electoral system of Bangladesh.
 
+![HomePage](https://raw.githubusercontent.com/wasi0013/Voting-System/master/Voting-System-Snapshots/Home.jpg)
+
 Software requirement:
 ----------------------------
   *Dot net framework 4 or above
