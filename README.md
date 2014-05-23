@@ -1,4 +1,4 @@
-Voting System of Bangladesh
+Voting System Application  
 ============================
 
 A simple voting system application in Bangla based on Electoral system of Bangladesh.
@@ -47,7 +47,7 @@ generated using microsoft visual studio 2010 ultimate
 
 |Forms And User Control	|Cyclomatic Complexity	|Depth of Inheritance	|Class Coupling	|Lines of Code|
 |-----------------------|----------------------|---------------------|---------------|-------------|
-|OVS	|366	|7	|101	|3794|
+|OVS	|383	|7	|101	|4131|
 |Program	|1|	1|	3|	3|
 |Main	|5	|7	|14	|20|
 |National Election|	5	|7	|14	|20|
@@ -62,6 +62,10 @@ generated using microsoft visual studio 2010 ultimate
 
 Actual lines of code:
 ---------------------
-Using git bash : 24,178 lines [Command: wc -l $(git ls-files)]  
-Written code: 3,794 lines  
+Using git bash : 25,257 lines [Command: wc -l $(git ls-files)]  
+Written code: 4,131 lines  
 Automatically generated: rest
+
+Total Work Hour:
+-----------------
+36 hours and 17 mins

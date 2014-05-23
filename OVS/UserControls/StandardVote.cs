@@ -238,12 +238,44 @@ namespace OVS
             else if (endtimes < DateTime.Now)
             {
                 //vote already finished update database for winning team
-
                 try
                 {
+                    
+                
                     con.Open();
                     SqlCommand insert = new SqlCommand("Update admin set voterid=(select voterid from team where votecount=(select max(votecount) from team)) where votename='seatvote'", con);
                     insert.ExecuteNonQuery();
+                    con.Close();
+                    con.Open();
+                    insert = new SqlCommand("Update team set seatcount=0", con);
+                    insert.ExecuteNonQuery();
+                    con.Close();
+                    
+                    
+                    mda = new SqlDataAdapter(@"select seatid from seatvote", con);
+                    dt = new DataTable();
+                    mda.Fill(dt);
+                
+                    if(dt.Rows.Count>0)
+                    {
+                        int i = dt.Rows.Count;
+                        
+                        while (i-- > 0)
+                        {
+                            dr = dt.Rows[i];
+                            try
+                            {
+                                con.Open();                                
+                                insert = new SqlCommand("update team set seatcount=seatcount+1 where teamname in (select teamname from teammember where votecount=(select max(votecount) from teammember where seatid='" + dr.ItemArray[0].ToString().Trim() + "'))",con);
+                                insert.ExecuteNonQuery();
+                                con.Close();
+                            }
+                            catch(Exception e){
+                                MessageBox.Show(e.ToString());
+                            
+                            }
+                        }
+                    }
                    
                     try
                     {
