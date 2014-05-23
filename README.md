@@ -27,12 +27,8 @@ Successfully implemented:
   * Seats Planning 
   * National Election Voting process
   * Master Reset control on Admin
-
-
-Under Development:
-------------------
   * National election result
-  * History (Impemented some animation with text box and string on Home) 
+  * History (Impemented some animation with text box and string on Home)   
 
 Still to come:
 --------------
@@ -47,25 +43,26 @@ generated using microsoft visual studio 2010 ultimate
 
 |Forms And User Control	|Cyclomatic Complexity	|Depth of Inheritance	|Class Coupling	|Lines of Code|
 |-----------------------|----------------------|---------------------|---------------|-------------|
-|OVS	|383	|7	|101	|4131|
+|OVS	|390	|7	|101	|4166|
 |Program	|1|	1|	3|	3|
 |Main	|5	|7	|14	|20|
-|National Election|	5	|7	|14	|20|
+|National Election|	41	|7	|44	|420|
 |National Election Vote|	29	|7	|43	|251|
-|Election|	36	|7	|38|	328|
+|Election|	37	|7	|38|	324|
 |Stats	|26	|7	|42|	237|
-|Home	|30	|7	|47	|378|
-|Quick Vote	|67	|7	|51	|639|
-|Signup	|34	|7	|45	|443|
-|Standard Vote	|59	|7	|49 |	603|
-|User Information|	38	|7|	50|	589|
+|Home	|30	|7	|48	|383|
+|Quick Vote	|68	|7	|51	|642|
+|Signup	|34	|7	|45	|482|
+|Standard Vote	|91	|7	|50 |	778|
+|User Information|	41	|7|	52|	689|
+|Team Stats| 14|7|36|173|
 
 Actual lines of code:
 ---------------------
-Using git bash : 25,257 lines [Command: wc -l $(git ls-files)]  
-Written code: 4,131 lines  
+Using git bash : 25,588 lines [Command: wc -l $(git ls-files)]  
+Written code: 4,166 lines  
 Automatically generated: rest
 
 Total Work Hour:
 -----------------
-36 hours and 17 mins
+36 hours and 32 mins

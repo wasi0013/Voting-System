@@ -32,9 +32,12 @@ namespace OVS
             loggedin = log;
             voterid = vid;
             password = pass;
-            comboBox2.Items.Clear();
-            comboBox2.Items.Add("team");
-
+            comboBox1.Items.Clear();
+            comboBox1.Items.Add("team");
+            comboBox1.Items.Add("Seat");
+            label2.Text = "বাছাই করুন";
+            label2.Show();
+            button2.Hide();
           
         
         
@@ -44,11 +47,64 @@ namespace OVS
         {
             DataTable dt = new DataTable();
             //collect all the user information from the database
-            SqlDataAdapter mda;
-            mda = new SqlDataAdapter("select teamname as Team_Name , votecount as Vote_Count from team order by votecount ", con);
-            mda.Fill(dt);
-            dataGridView1.DataSource = dt;
+            if (comboBox1.Text == "team")
+            {
+                SqlDataAdapter mda;
+                dt = new DataTable();
+                mda = new SqlDataAdapter("select teamname as Team_Name , votecount as Vote_Count,SeatCount from team order by seatcount ", con);
+                mda.Fill(dt);
+                dataGridView1.DataSource = dt;
+                if (dt.Rows.Count > 0) {
+                    DataRow dr = dt.Rows[dt.Rows.Count-1];
+                    label1.Show();
+                    label1.Text = ("বিজয়ী দলঃ "+dr.ItemArray[0].ToString());
+                
+                }
+            }
+            else if (comboBox1.Text == "Seat")
+            {
+                comboBox1.Items.Clear();
 
+                label2.Text="আসনের নাম";
+                SqlDataAdapter mda;
+                dt = new DataTable();
+                mda = new SqlDataAdapter("select seatname from seatvote", con);
+                mda.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+                    int i = dt.Rows.Count;
+
+                    while (i-- > 0)
+                    {
+                        DataRow dr = dt.Rows[i];
+                        comboBox1.Items.Add(dr.ItemArray[0].ToString().Trim());
+                           
+                    }
+                }
+            }
+            else {
+                SqlDataAdapter mda;
+                dt = new DataTable();
+                mda = new SqlDataAdapter("select userinfo.Uname as Candidate, teammember.teamname as Team_Name , teammember.votecount as Vote_Count from teammember INNER JOIN userinfo ON teammember.voterid=userinfo.voterid where teammember.seatid=(select seatid from seatvote where seatname='"+comboBox1.Text+"')", con);
+                mda.Fill(dt);
+                dataGridView1.DataSource = dt;
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow dr = dt.Rows[dt.Rows.Count-1];
+                    label1.Show();
+                    label1.Text = ("বিজয়ীঃ " + dr.ItemArray[0].ToString());
+
+                }
+         
+            
+            
+            
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            button2.Show();
         }
     }
 }

@@ -40,3 +40,7 @@ D:\CBHW_SPL\OVS\OVS\obj\x86\Debug\OVS.NationalElection.resources
 D:\CBHW_SPL\OVS\OVS\bin\Debug\OVS.exe.config
 D:\CBHW_SPL\OVS\OVS\obj\x86\Debug\OVS.csprojResolveAssemblyReference.cache
 D:\CBHW_SPL\OVS\OVS\obj\x86\Debug\OVS.TeamStats.resources
+D:\CBHW_SPL\OVS\OVS\bin\Debug\OVS.exe.manifest
+D:\CBHW_SPL\OVS\OVS\bin\Debug\OVS.application
+D:\CBHW_SPL\OVS\OVS\obj\x86\Debug\OVS.exe.manifest
+D:\CBHW_SPL\OVS\OVS\obj\x86\Debug\OVS.application
