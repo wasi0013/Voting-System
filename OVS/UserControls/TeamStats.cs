@@ -106,5 +106,10 @@ namespace OVS
         {
             button2.Show();
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Home hs = new Home(activeform,loggedin,voterid,password);
+        }
     }
 }
