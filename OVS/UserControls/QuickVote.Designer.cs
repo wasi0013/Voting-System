@@ -56,6 +56,7 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.resetbutton = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -180,7 +181,7 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -241,7 +242,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(603, 208);
+            this.textBox1.Location = new System.Drawing.Point(603, 240);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(185, 26);
             this.textBox1.TabIndex = 34;
@@ -255,7 +256,7 @@
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(521, 208);
+            this.label1.Location = new System.Drawing.Point(510, 241);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 24);
             this.label1.TabIndex = 35;
@@ -264,7 +265,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(603, 252);
+            this.button1.Location = new System.Drawing.Point(603, 295);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(119, 33);
             this.button1.TabIndex = 36;
@@ -353,7 +354,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(603, 174);
+            this.comboBox1.Location = new System.Drawing.Point(603, 191);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(185, 28);
             this.comboBox1.TabIndex = 43;
@@ -372,12 +373,26 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(603, 208);
+            this.dateTimePicker1.Location = new System.Drawing.Point(603, 241);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(273, 26);
             this.dateTimePicker1.TabIndex = 45;
             this.dateTimePicker1.Visible = false;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Black;
+            this.label5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label5.Location = new System.Drawing.Point(510, 191);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(76, 24);
+            this.label5.TabIndex = 46;
+            this.label5.Text = "শেষ হবে?";
+            this.label5.Visible = false;
             // 
             // QuickVote
             // 
@@ -386,6 +401,7 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.BackgroundImage = global::OVS.Properties.Resources._11testParliament_House_at_night;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.resetbutton);
             this.Controls.Add(this.comboBox1);
@@ -454,5 +470,6 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button resetbutton;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label5;
     }
 }

@@ -279,7 +279,7 @@ namespace OVS
                    
                     try
                     {
-                        insert = new SqlCommand("insert into history(event,dates) values('" + endtimes + " " +seatname + " is finished','" + endtimes + "')", con);
+                        insert = new SqlCommand("insert into history(event,dates) values('" + endtimes + " National Election is finished','" + endtimes + "')", con);
                         insert.ExecuteNonQuery();
                     }
                     catch
@@ -297,7 +297,7 @@ namespace OVS
                     
                     try
                     {
-                        insert = new SqlCommand("insert into history(event,dates) values('" + endtimes + " " + seatname + " is finished','" + endtimes + "')", con);
+                        insert = new SqlCommand("insert into history(event,dates) values('" + endtimes + "  National Election is finished','" + endtimes + "')", con);
                         insert.ExecuteNonQuery();
                     }
                     catch

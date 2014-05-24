@@ -48,7 +48,7 @@ namespace OVS
             regbutton.Hide();
             passlabel.Hide();
             dateTimePicker1.Hide();
-
+            label5.Hide();
         }
         public QuickVote(Form form, Boolean log, string vid, string pass,string voten)
         {
@@ -390,6 +390,7 @@ namespace OVS
                     if (voterid == "13")
                     {
                         label1.Show();
+                        label1.Text = "শেষ হবে?";
 
                         //textBox1 is not necessary anymore as we are using datetime picker
                         
@@ -424,7 +425,10 @@ namespace OVS
 
                             button1.Text = "ভোট দিন";
                             textBox1.Show();
-
+                            label5.Show();
+                            label5.Text = "প্রার্থীর নাম";
+                            label1.Show();
+                            label1.Text = "পাসওয়ার্ড?";
                             comboBox1.Show();
                             con.Open();
                             SqlDataAdapter dataadapter = new SqlDataAdapter("SELECT uname as Name , voterid as Voter_Id FROM userinfo where voterid in (SELECT voterid from "+votename+");", con);
@@ -502,6 +506,7 @@ namespace OVS
                     insert = new SqlCommand("insert into "+votename+"r(voterid) values(" + voterid + ");", con);
                     insert.ExecuteNonQuery();
                     con.Close();
+                    MessageBox.Show("আপনার মূল্যবান ভোটটি প্রদান করার জন্য ধন্যবাদ!");
                 
                 }
                 else
