@@ -610,6 +610,7 @@ namespace OVS
                         insert = new SqlCommand("Update team set votecount=votecount+1 where teamname =(select teamname from teammember where voterid=@voterid)", con);
                         insert.Parameters.AddWithValue("voterid", voterid);
                         insert.ExecuteNonQuery();
+                        MessageBox.Show("আপনার মূল্যবান ভোটটি প্রদান করার জন্য ধন্যবাদ!");
                         
 
                     }
@@ -619,6 +620,7 @@ namespace OVS
                         insert.ExecuteNonQuery();
                         insert = new SqlCommand("insert into " + votename + "r(voterid,votearea) values(" + voterid + ",'" + votearea + "');", con);
                         insert.ExecuteNonQuery();
+                        MessageBox.Show("আপনার মূল্যবান ভোটটি প্রদান করার জন্য ধন্যবাদ!");
                     }
                     con.Close();
                 }

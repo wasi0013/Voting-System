@@ -57,6 +57,7 @@
             this.resetbutton = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -128,6 +129,7 @@
             this.Title_label.Size = new System.Drawing.Size(606, 55);
             this.Title_label.TabIndex = 23;
             this.Title_label.Text = "ডিজিটাল অনলাইন ভোটিং সিস্টেম";
+            this.toolTip1.SetToolTip(this.Title_label, "Digital Online Voting System");
             // 
             // linkLabel4
             // 
@@ -471,5 +473,6 @@
         private System.Windows.Forms.Button resetbutton;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
