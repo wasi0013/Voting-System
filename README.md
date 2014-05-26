@@ -30,7 +30,8 @@ Successfully implemented:
   * National Election Voting process
   * Master Reset control on Admin
   * National election result
-  * History (Impemented some animation with text box and string on Home)   
+  * History (Impemented some animation with text box and string on Home)
+  * Added tool tips for English translation of Bangla labels   
 
 Still to come:
 --------------
@@ -45,7 +46,7 @@ generated using microsoft visual studio 2010 ultimate
 
 |Forms And User Control	|Cyclomatic Complexity	|Depth of Inheritance	|Class Coupling	|Lines of Code|
 |-----------------------|----------------------|---------------------|---------------|-------------|
-|OVS	|390	|7	|101	|4166|
+|OVS	|391	|7	|103	|4255|
 |Program	|1|	1|	3|	3|
 |Main	|5	|7	|14	|20|
 |National Election|	41	|7	|44	|420|
@@ -61,10 +62,10 @@ generated using microsoft visual studio 2010 ultimate
 
 Actual lines of code:
 ---------------------
-Using git bash : 25,588 lines [Command: wc -l $(git ls-files)]  
-Written code: 4,166 lines  
+Using git bash : 30,942 lines [Command: wc -l $(git ls-files)]  
+Written code: 4,255 lines  
 Automatically generated: rest
 
-Total Work Hour:
+Total Work Hours:
 -----------------
 36 hours and 37 mins
