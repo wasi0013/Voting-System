@@ -12,21 +12,32 @@ namespace OVS
 {
     public partial class Home : UserControl
     {
-        //This will hold the active form
-        Form activeform;
-        string text;
-        //login checker default not logged in
-        Boolean loggedin = false,key=false;
-        int turn = 0;
+        /*****************************************
+         * This is the User Control for Home Page*
+         * Main form directly transfers controls *
+         * to this user control.                 *
+         * Each and every other control will     *
+         * receive the form as supplied-parameter*
+         * from this usercontrol                 *
+         *****************************************/
 
+
+        Form activeform; //This will hold the active form
+        Boolean loggedin = false; //login checker default not logged in
         
-        //voterid and password holder
-        string voterid, password;
+        string voterid, password; //voterid and password holder
+        
+
+        //animation
+        string text; //animation string for textbox
+        Boolean key = false; //toggle
+        int turn = 0; //counter
+      
 
         //static sql data connection
-        //fixed connection open close issues
         static string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
         static SqlConnection con = new SqlConnection(connstr);
+
 
         public Home(Form form,Boolean log,string vid,string pass)
         {
@@ -43,17 +54,16 @@ namespace OVS
             activeform.Text = "Home";
             
             con.Open();
+            //gather user counts for animation
             SqlDataAdapter mda = new SqlDataAdapter("select * from userinfo", con);
             DataTable dt = new DataTable();
             mda.Fill(dt);
             
+            //history generator
             mda = new SqlDataAdapter("select event from history", con);
             DataTable dk= new DataTable();
             mda.Fill(dk);
             dataGridView1.DataSource = dk;
-
-
-            
             con.Close();
 
             //text animation 
@@ -84,6 +94,8 @@ namespace OVS
 
                 //revert the login label text to log in
                 Login_Label.Text = "লগ ইন";
+
+                //show login options
                 pwd_label.Show();
                 Voterid_Box.Show();
                 label1.Show();
@@ -154,7 +166,6 @@ namespace OVS
             if (loggedin)
             {
                 //make sure user logged in and invoke quickvote
-
                 QuickVote quickvote = new QuickVote(activeform, loggedin, voterid, password,"quickvote");
             }
             else

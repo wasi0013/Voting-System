@@ -43,6 +43,9 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -138,12 +141,12 @@
             // 
             // back_button
             // 
-            this.back_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.back_button.Location = new System.Drawing.Point(770, 543);
+            this.back_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.back_button.Location = new System.Drawing.Point(1127, 140);
             this.back_button.Name = "back_button";
-            this.back_button.Size = new System.Drawing.Size(123, 40);
+            this.back_button.Size = new System.Drawing.Size(82, 25);
             this.back_button.TabIndex = 7;
-            this.back_button.Text = "back";
+            this.back_button.Text = "ফিরে যান";
             this.back_button.UseVisualStyleBackColor = true;
             this.back_button.Click += new System.EventHandler(this.back_button_Click);
             // 
@@ -242,12 +245,51 @@
             this.comboBox3.Visible = false;
             this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Location = new System.Drawing.Point(202, 192);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(199, 26);
+            this.label1.TabIndex = 58;
+            this.label1.Text = "সিটি কর্পোরেশানের নাম ";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label2.Location = new System.Drawing.Point(482, 192);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(134, 28);
+            this.label2.TabIndex = 59;
+            this.label2.Text = "পৌরসভার নাম ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label3.Location = new System.Drawing.Point(836, 192);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(128, 26);
+            this.label3.TabIndex = 60;
+            this.label3.Text = "উপজেলার নাম";
+            // 
             // Election
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::OVS.Properties.Resources._11testParliament_House_at_night;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -290,5 +332,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
