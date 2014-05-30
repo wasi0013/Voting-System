@@ -46,7 +46,7 @@ generated using microsoft visual studio 2010 ultimate
 
 |Forms And User Control	|Cyclomatic Complexity	|Depth of Inheritance	|Class Coupling	|Lines of Code|
 |-----------------------|----------------------|---------------------|---------------|-------------|
-|OVS	|391	|7	|103	|4255|
+|OVS	|391	|7	|103	|4261|
 |Program	|1|	1|	3|	3|
 |Main	|5	|7	|14	|20|
 |National Election|	41	|7	|44	|420|
@@ -63,7 +63,7 @@ generated using microsoft visual studio 2010 ultimate
 Actual lines of code:
 ---------------------
 Using git bash : 30,942 lines [Command: wc -l $(git ls-files)]  
-Written code: 4,255 lines  
+Written code: 4,261 lines  
 Automatically generated: rest
 
 Total Work Hours:
