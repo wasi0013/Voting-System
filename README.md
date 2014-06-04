@@ -1,4 +1,4 @@
-Voting System Application  
+[Voting System Application](http://wasi0013.github.io/Voting-System)  
 ============================
 
 A simple voting system application in Bangla based on Electoral system of Bangladesh.
@@ -7,7 +7,8 @@ A simple voting system application in Bangla based on Electoral system of Bangla
 
 Software requirement:
 ----------------------------
-  *Dot net framework 4 or above
+  * Dot net framework 4 or above([Click to download](http://www.microsoft.com/en-us/download/details.aspx?id=40779))
+  * Microsoft SQL Server 2008 or above([Click to download](http://www.microsoft.com/en-us/download/details.aspx?id=29062))  
 
 Successfully implemented:
 -------------------------
@@ -46,7 +47,7 @@ generated using microsoft visual studio 2010 ultimate
 
 |Forms And User Control	|Cyclomatic Complexity	|Depth of Inheritance	|Class Coupling	|Lines of Code|
 |-----------------------|----------------------|---------------------|---------------|-------------|
-|OVS	|391	|7	|103	|4261|
+|OVS	|395	|7	|103	|4304|
 |Program	|1|	1|	3|	3|
 |Main	|5	|7	|14	|20|
 |National Election|	41	|7	|44	|420|
@@ -60,10 +61,10 @@ generated using microsoft visual studio 2010 ultimate
 |User Information|	41	|7|	52|	689|
 |Team Stats| 14|7|36|173|
 
-Actual lines of code:
----------------------
-Using git bash : 30,942 lines [Command: wc -l $(git ls-files)]  
-Written code: 4,261 lines  
+Lines of code written So far:
+-----------------------------
+Using git bash : 31,148 lines [Command: wc -l $(git ls-files)]  
+Written code: 4,304 lines  
 Automatically generated: rest
 
 Total Work Hours:
