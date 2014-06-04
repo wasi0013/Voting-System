@@ -1,4 +1,4 @@
-[Voting System Application](http://wasi0013.github.io/Voting-System)  
+Voting System Application  
 ============================
 
 A simple voting system application in Bangla based on Electoral system of Bangladesh.
@@ -7,8 +7,9 @@ A simple voting system application in Bangla based on Electoral system of Bangla
 
 Software requirement:
 ----------------------------
-  * Dot net framework 4 or above([Click to download](http://www.microsoft.com/en-us/download/details.aspx?id=40779))
-  * Microsoft SQL Server 2008 or above([Click to download](http://www.microsoft.com/en-us/download/details.aspx?id=29062))  
+  * Dot net framework 4 or above([Click to download](http://www.microsoft.com/en-us/download/details.aspx?id=40779)
+)
+  * Microsoft SQL Server 2008 or above([Click to download](http://www.microsoft.com/en-us/download/details.aspx?id=29062) )  
 
 Successfully implemented:
 -------------------------
@@ -45,26 +46,26 @@ Some Overview on Cyclomatic Complexity:
 ---------------------------------------
 generated using microsoft visual studio 2010 ultimate 
 
-|Forms And User Control	|Cyclomatic Complexity	|Depth of Inheritance	|Class Coupling	|Lines of Code|
+|Forms And User Control |Cyclomatic Complexity  |Depth of Inheritance |Class Coupling |Lines of Code|
 |-----------------------|----------------------|---------------------|---------------|-------------|
-|OVS	|395	|7	|103	|4304|
-|Program	|1|	1|	3|	3|
-|Main	|5	|7	|14	|20|
-|National Election|	41	|7	|44	|420|
-|National Election Vote|	29	|7	|43	|251|
-|Election|	37	|7	|38|	324|
-|Stats	|26	|7	|42|	237|
-|Home	|30	|7	|48	|383|
-|Quick Vote	|68	|7	|51	|642|
-|Signup	|34	|7	|45	|482|
-|Standard Vote	|91	|7	|50 |	778|
-|User Information|	41	|7|	52|	689|
+|OVS  |391  |7  |103  |4261|
+|Program  |1| 1|  3|  3|
+|Main |5  |7  |14 |20|
+|National Election| 41  |7  |44 |420|
+|National Election Vote|  29  |7  |43 |251|
+|Election|  37  |7  |38|  324|
+|Stats  |26 |7  |42|  237|
+|Home |30 |7  |48 |383|
+|Quick Vote |68 |7  |51 |642|
+|Signup |34 |7  |45 |482|
+|Standard Vote  |91 |7  |50 | 778|
+|User Information|  41  |7| 52| 689|
 |Team Stats| 14|7|36|173|
 
-Lines of code written So far:
------------------------------
-Using git bash : 31,148 lines [Command: wc -l $(git ls-files)]  
-Written code: 4,304 lines  
+Actual lines of code:
+---------------------
+Using git bash : 30,942 lines [Command: wc -l $(git ls-files)]  
+Written code: 4,261 lines  
 Automatically generated: rest
 
 Total Work Hours:
