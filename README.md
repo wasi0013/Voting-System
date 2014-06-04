@@ -9,8 +9,9 @@ Software requirement:
 ----------------------------
   * Dot net framework 4 or above([Click to download](http://www.microsoft.com/en-us/download/details.aspx?id=40779))
   * Microsoft SQL Server 2008 or above([Click to download](http://www.microsoft.com/en-us/download/details.aspx?id=29062))  
-Successfully implemented:
--------------------------
+
+Successfully implemented:  
+------------------------------
   * Home page
   * Admin account (currently uses voterid 13 as admin)
   * Login
