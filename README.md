@@ -7,7 +7,9 @@ A simple voting system application in Bangla based on Electoral system of Bangla
 
 Software requirement:
 ----------------------------
-  *Dot net framework 4 or above
+  * Dot net framework 4 or above([Click to download](http://www.microsoft.com/en-us/download/details.aspx?id=40779)
+)
+  * Microsoft SQL Server 2008 or above([Click to download](http://www.microsoft.com/en-us/download/details.aspx?id=29062) )  
 
 Successfully implemented:
 -------------------------
