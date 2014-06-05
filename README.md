@@ -10,35 +10,39 @@ Software requirement:
   * Dot net framework 4 or above([Click to download](http://www.microsoft.com/en-us/download/details.aspx?id=40779))
   * Microsoft SQL Server 2008 or above([Click to download](http://www.microsoft.com/en-us/download/details.aspx?id=29062))  
 
-Successfully implemented:  
+How to Test it:
+---------------
+  * Clone this repository
+  * Run the "ovs.sql" script from the TestDbScript folder in SQL server management studio to generate the test database
+  * Open "ovs.sln" in Visual studio
+  * Build and run 
+
+
+Features:  
 ------------------------------
-  * Home page
-  * Admin account (currently uses voterid 13 as admin)
-  * Login
-  * User registration and signup (With password Strength checker)
-  * Quick Vote
-  * Vote Clock for all votes (Stable! will work even if the software were closed)
-  * Stats (Implemented charts)
-  * User information page
-  * Quick Vote
-  * Local vote
-  * City Corporation Vote
-  * Upozilla Vote
-  * Ctg Hill Area vote
-  * Pourashava Vote
-  * Team registration and management for National Election
-  * Seats Planning 
-  * National Election Voting process
-  * Master Reset control on Admin
-  * National election result
-  * History (Impemented some animation with text box and string on Home)
-  * Added tool tips for English translation of Bangla labels   
-
-Still to come:
---------------
-
-  * History of votes
-  * More Robust admin page with greater and flexible control and quick access
+  - [x] Home page
+  - [x] Admin account (currently uses voterid 13 as admin)
+  - [x] Login
+  - [x] User registration and signup (With password Strength checker)
+  - [x] Quick Vote
+  - [x] Vote Clock for all votes (Stable! will work even if the software were closed)
+  - [x] Stats (Implemented charts)
+  - [x] User information page
+  - [x] Quick Vote
+  - [x] Local vote
+  - [x] City Corporation Vote
+  - [x] Upozilla Vote
+  - [x] Ctg Hill Area vote
+  - [x] Pourashava Vote
+  - [x] Team registration and management for National Election
+  - [x] Seats Planning 
+  - [x] National Election Voting process
+  - [x] Master Reset control on Admin
+  - [x] National election result
+  - [x] History (Some animation with text box and string on Home)
+  - [x] Tool tips for English translation of Bangla labels   
+  - [ ] History of votes
+  - [ ] More Robust admin page with greater and flexible control and quick access
 
 
 Some Overview on Cyclomatic Complexity:
