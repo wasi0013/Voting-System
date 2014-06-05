@@ -26,8 +26,8 @@ namespace OVS.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True;Pooling=F" +
-            "alse")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True;Pooling=Fal" +
+            "se")]
         public string ovsConnectionString {
             get {
                 return ((string)(this["ovsConnectionString"]));

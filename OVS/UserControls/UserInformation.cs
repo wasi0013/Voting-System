@@ -19,7 +19,7 @@ namespace OVS
         }
 
         //fixed connection open close issues
-        static string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
+        static string connstr = "Data Source=.\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
         static SqlConnection con = new SqlConnection(connstr);
 
         Form activeform;

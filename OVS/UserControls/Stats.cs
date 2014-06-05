@@ -23,7 +23,7 @@ namespace OVS
 
         //static sql connections
         //fixed connection open and close issues
-        static string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
+        static string connstr = "Data Source=.\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
         static  SqlConnection con = new SqlConnection(connstr);
 
         public Stats()

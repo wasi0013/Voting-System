@@ -25,7 +25,7 @@ namespace OVS
         Boolean key = true; //toggle
         
         //Static Sql Connection
-        static string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
+        static string connstr = "Data Source=.\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
         static SqlConnection con = new SqlConnection(connstr);
                     
 

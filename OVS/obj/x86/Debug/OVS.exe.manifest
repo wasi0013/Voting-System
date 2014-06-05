@@ -49,17 +49,17 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>2PpsFDjYWZxKwsmafS8ZS+8VU+E=</dsig:DigestValue>
+        <dsig:DigestValue>y7BphOMfL7GZzTKcJ7nfMkslHpo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="OVS.exe.config" size="396">
+  <file name="OVS.exe.config" size="394">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>2QoBMUzgXJiAAHKwgxWKJ6gYzrM=</dsig:DigestValue>
+      <dsig:DigestValue>8pawy6zMU/KJ3Cs7/hvI/wocKqk=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

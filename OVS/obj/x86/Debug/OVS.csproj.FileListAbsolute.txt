@@ -6,7 +6,6 @@ D:\CBHW_SPL\mfc\OVS\OVS\obj\x86\Debug\OVS.Properties.Resources.resources
 D:\CBHW_SPL\mfc\OVS\OVS\obj\x86\Debug\OVS.csproj.GenerateResource.Cache
 D:\CBHW_SPL\mfc\OVS\OVS\obj\x86\Debug\OVS.exe
 D:\CBHW_SPL\mfc\OVS\OVS\obj\x86\Debug\OVS.pdb
-D:\CBHW_SPL\mfc\OVS\OVS\obj\x86\Debug\OVS.Login.resources
 D:\CBHW_SPL\mfc\OVS\OVS\obj\x86\Debug\OVS.csprojResolveAssemblyReference.cache
 E:\project\mail\OVS\OVS\obj\x86\Debug\OVS.exe
 E:\project\mail\OVS\OVS\obj\x86\Debug\OVS.pdb
@@ -44,3 +43,16 @@ D:\CBHW_SPL\OVS\OVS\bin\Debug\OVS.exe.manifest
 D:\CBHW_SPL\OVS\OVS\bin\Debug\OVS.application
 D:\CBHW_SPL\OVS\OVS\obj\x86\Debug\OVS.exe.manifest
 D:\CBHW_SPL\OVS\OVS\obj\x86\Debug\OVS.application
+D:\CBHW_SPL\mfc\OVS\OVS\bin\Debug\OVS.exe.config
+D:\CBHW_SPL\mfc\OVS\OVS\bin\Debug\OVS.exe.manifest
+D:\CBHW_SPL\mfc\OVS\OVS\bin\Debug\OVS.application
+D:\CBHW_SPL\mfc\OVS\OVS\obj\x86\Debug\OVS.Election.resources
+D:\CBHW_SPL\mfc\OVS\OVS\obj\x86\Debug\OVS.NationalElection.resources
+D:\CBHW_SPL\mfc\OVS\OVS\obj\x86\Debug\OVS.QuickVote.resources
+D:\CBHW_SPL\mfc\OVS\OVS\obj\x86\Debug\OVS.StandardVote.resources
+D:\CBHW_SPL\mfc\OVS\OVS\obj\x86\Debug\OVS.Stats.resources
+D:\CBHW_SPL\mfc\OVS\OVS\obj\x86\Debug\OVS.Signup.resources
+D:\CBHW_SPL\mfc\OVS\OVS\obj\x86\Debug\OVS.TeamStats.resources
+D:\CBHW_SPL\mfc\OVS\OVS\obj\x86\Debug\OVS.UserInformation.resources
+D:\CBHW_SPL\mfc\OVS\OVS\obj\x86\Debug\OVS.exe.manifest
+D:\CBHW_SPL\mfc\OVS\OVS\obj\x86\Debug\OVS.application

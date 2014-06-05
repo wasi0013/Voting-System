@@ -16,7 +16,7 @@ namespace OVS
         Boolean loggedin = false;
         string voterid, password;
 
-        static string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
+        static string connstr = "Data Source=.\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
         static SqlConnection con = new SqlConnection(connstr);
 
         public void hideall() {

@@ -21,7 +21,7 @@ namespace OVS
         string voterid, password;
         Boolean alright = true;
         DateTime dob=DateTime.Now;
-        static string connstr = "Data Source=LEO\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
+        static string connstr = "Data Source=.\\SQLEXPRESS;Initial Catalog=ovs;Integrated Security=True";
         static SqlConnection con = new SqlConnection(connstr);
                 
         public Signup()
