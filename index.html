@@ -1,43 +1,49 @@
-<!DOCTYPE html>
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
 <html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Voting-system : A simple voting system application based on Electoral system of Bangladesh" />
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+  <title>Voting-system</title>
+  <meta name="description" content="A simple voting system application based on Electoral system of Bangladesh.">
 
-    <title>Voting-system</title>
-  </head>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <body>
+</head>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/wasi0013/Voting-System">View on GitHub</a>
+<body>
 
-          <h1 id="project_title">Voting-system</h1>
-          <h2 id="project_tagline">A simple voting system application based on Electoral system of Bangladesh. (4,261 Lines of Codes so far... )</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/wasi0013/Voting-System/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/wasi0013/Voting-System/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
+  <div class="wrapper">
+    <header>
+      <h1 class="title">Voting-system</h1>
+    </header>
+    <div id="container">
+      <p class="tagline">A simple voting system application based on Electoral system of Bangladesh.</p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/wasi0013/Voting-System/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/wasi0013/Voting-System/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/wasi0013/Voting-System" class="code">View Voting-system on GitHub</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+          <h1>
 <a name="voting-system-application--" class="anchor" href="#voting-system-application--"><span class="octicon octicon-link"></span></a>
 <a href="http://wasi0013.github.io/Voting-System">Voting System Application</a>  </h1>
 
 <p>A simple voting system application in Bangla based on Electoral system of Bangladesh.</p>
 
-<iframe src="http://www.slideshare.net/slideshow/embed_code/35480137?rel=0" width="597" height="486" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px 1px 0; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/wasi0013/voting-system-35480137" title="Voting System" target="_blank">Voting System</a> </strong> from <strong><a href="http://www.slideshare.net/wasi0013" target="_blank">wasi0013</a></strong> </div>
+<p><img src="https://raw.githubusercontent.com/wasi0013/Voting-System/master/Voting-System-Snapshots/Home.jpg" alt="HomePage"></p>
+
 <h2>
 <a name="software-requirement" class="anchor" href="#software-requirement"><span class="octicon octicon-link"></span></a>Software requirement:</h2>
 
@@ -46,7 +52,15 @@
 <li>Microsoft SQL Server 2008 or above(<a href="http://www.microsoft.com/en-us/download/details.aspx?id=29062">Click to download</a>)<br>
 </li>
 </ul><h2>
-<a name="successfully-implemented--" class="anchor" href="#successfully-implemented--"><span class="octicon octicon-link"></span></a>Successfully implemented:  </h2>
+<a name="how-to-test-it" class="anchor" href="#how-to-test-it"><span class="octicon octicon-link"></span></a>How to Test it:</h2>
+
+<ul>
+<li>Download the <a href="https://github.com/wasi0013/Voting-System/zipball/master">zip</a>/<a href="https://github.com/wasi0013/Voting-System/tarball/master">tar.gz</a> file or Clone the <a href="https://github.com/wasi0013/Voting-System">repository</a> from github</li>
+<li>Run the "ovs.sql" script from the TestDbScript folder in SQL server management studio to generate the test database</li>
+<li>Open "ovs.sln" in Visual studio</li>
+<li>Build and run </li>
+</ul><h2>
+<a name="features--" class="anchor" href="#features--"><span class="octicon octicon-link"></span></a>Features:  </h2>
 
 <ul>
 <li>Home page</li>
@@ -68,154 +82,40 @@
 <li>National Election Voting process</li>
 <li>Master Reset control on Admin</li>
 <li>National election result</li>
-<li>History (Impemented some animation with text box and string on Home)</li>
-<li>Added tool tips for English translation of Bangla labels<br>
+<li>History (Some animation with text box and string on Home)</li>
+<li>Tool tips for English translation of Bangla labels<br>
 </li>
-</ul><h2>
-<a name="still-to-come" class="anchor" href="#still-to-come"><span class="octicon octicon-link"></span></a>Still to come:</h2>
-
-<ul>
-<li>History of votes</li>
-<li>More Robust admin page with greater and flexible control and quick access</li>
-</ul><h2>
-<a name="some-overview-on-cyclomatic-complexity" class="anchor" href="#some-overview-on-cyclomatic-complexity"><span class="octicon octicon-link"></span></a>Some Overview on Cyclomatic Complexity:</h2>
-
-<p>generated using microsoft visual studio 2010 ultimate </p>
-
-<table>
-<thead><tr>
-<th>Forms And User Control</th>
-<th>Cyclomatic Complexity</th>
-<th>Depth of Inheritance</th>
-<th>Class Coupling</th>
-<th>Lines of Code</th>
-</tr></thead>
-<tbody>
-<tr>
-<td>OVS</td>
-<td>395</td>
-<td>7</td>
-<td>103</td>
-<td>4304</td>
-</tr>
-<tr>
-<td>Program</td>
-<td>1</td>
-<td>1</td>
-<td>3</td>
-<td>3</td>
-</tr>
-<tr>
-<td>Main</td>
-<td>5</td>
-<td>7</td>
-<td>14</td>
-<td>20</td>
-</tr>
-<tr>
-<td>National Election</td>
-<td>41</td>
-<td>7</td>
-<td>44</td>
-<td>420</td>
-</tr>
-<tr>
-<td>National Election Vote</td>
-<td>29</td>
-<td>7</td>
-<td>43</td>
-<td>251</td>
-</tr>
-<tr>
-<td>Election</td>
-<td>37</td>
-<td>7</td>
-<td>38</td>
-<td>324</td>
-</tr>
-<tr>
-<td>Stats</td>
-<td>26</td>
-<td>7</td>
-<td>42</td>
-<td>237</td>
-</tr>
-<tr>
-<td>Home</td>
-<td>30</td>
-<td>7</td>
-<td>48</td>
-<td>383</td>
-</tr>
-<tr>
-<td>Quick Vote</td>
-<td>68</td>
-<td>7</td>
-<td>51</td>
-<td>642</td>
-</tr>
-<tr>
-<td>Signup</td>
-<td>34</td>
-<td>7</td>
-<td>45</td>
-<td>482</td>
-</tr>
-<tr>
-<td>Standard Vote</td>
-<td>91</td>
-<td>7</td>
-<td>50</td>
-<td>778</td>
-</tr>
-<tr>
-<td>User Information</td>
-<td>41</td>
-<td>7</td>
-<td>52</td>
-<td>689</td>
-</tr>
-<tr>
-<td>Team Stats</td>
-<td>14</td>
-<td>7</td>
-<td>36</td>
-<td>173</td>
-</tr>
-</tbody>
-</table><h2>
-<a name="lines-of-code-written-so-far" class="anchor" href="#lines-of-code-written-so-far"><span class="octicon octicon-link"></span></a>Lines of code written So far:</h2>
-
-<p>Using git bash : 31,148 lines [Command: wc -l $(git ls-files)]<br>
-Written code: 4,304 lines<br>
-Automatically generated: rest</p>
-
-<h2>
-<a name="total-work-hours" class="anchor" href="#total-work-hours"><span class="octicon octicon-link"></span></a>Total Work Hours:</h2>
-
-<p>36 hours and 37 mins</p>
-      </section>
+</ul>
+        </article>
+      </div>
     </div>
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/wasi0013" class="avatar"><img src="https://avatars2.githubusercontent.com/u/3449675?s=60" width="48" height="48"/></a> <a href="https://github.com/wasi0013">wasi0013</a> maintains <a href="https://github.com/wasi0013/Voting-System">Voting-system</a></p>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Voting-system maintained by <a href="https://github.com/wasi0013">wasi0013</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
 
-              <script type="text/javascript">
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="http://pages.github.com/">GitHub Pages</a><br/>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/wasi0013/Voting-System/tarball/master" class="tar">tar</a><a href="https://github.com/wasi0013/Voting-System/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+
+            <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
           <script type="text/javascript">
             try {
-              var pageTracker = _gat._getTracker("Voting System");
+              var pageTracker = _gat._getTracker("Voting System digital bangladesh C# dotnet ");
             pageTracker._trackPageview();
             } catch(err) {}
           </script>
 
-
-  </body>
+</body>
 </html>
