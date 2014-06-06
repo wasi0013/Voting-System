@@ -686,7 +686,7 @@ namespace OVS
        
         private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Home hm = new Home(activeform, loggedin, voterid, password);
+            Election hm = new Election(activeform, loggedin, voterid, password);
         }
 
         

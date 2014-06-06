@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="OVS.exe" size="681472">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="OVS.exe" size="681984">
       <assemblyIdentity name="OVS" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>y7BphOMfL7GZzTKcJ7nfMkslHpo=</dsig:DigestValue>
+        <dsig:DigestValue>n35Z7qwZ6mgEz3QfHWqx9QjG6bk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

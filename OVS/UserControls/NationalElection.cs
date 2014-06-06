@@ -43,7 +43,7 @@ namespace OVS
 
         private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Home hm = new Home(activeform, loggedin, voterid, password);
+            Election hm = new Election(activeform, loggedin, voterid, password);
         }
 
         private void NationalElection_Load(object sender, EventArgs e)
@@ -56,6 +56,8 @@ namespace OVS
             hideall();
             if (switche)
             {
+                label3.Text = "সিটের নাম";
+                label3.Show();
                 button2.Show();
                 comboBox1.Show();
                 comboBox1.Items.Clear();
@@ -117,6 +119,8 @@ namespace OVS
                     comboBox2.Show();
                     
                     label2.Show();
+                    label3.Text = "দলের নাম(দলনেতা)";
+                    
                     label3.Show();
                     label4.Show();
                     
