@@ -74,3 +74,6 @@ Automatically generated: rest
 Total Work Hours:
 -----------------
 36 hours and 37 mins
+
+
+Note: This was my "hello world" project on c# (Only for educational purpose)
